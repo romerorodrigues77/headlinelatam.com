@@ -35,7 +35,9 @@ aws s3 sync "$SOURCE_DIR" "s3://$S3_BUCKET/" \
     --exclude ".gitignore" \
     --exclude "node_modules/*" \
     --exclude ".env*" \
-    --exclude "*.md"
+    --exclude "*.md" \
+    --exclude ".claude/*" \
+    --exclude "deploy.sh"
 
 # HTML com cache curto, para atualizações chegarem ao navegador
 aws s3 cp index.html "s3://$S3_BUCKET/index.html" \
