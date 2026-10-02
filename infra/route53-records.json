@@ -1,0 +1,13 @@
+{
+  "Comment": "headlinelatam.com: CloudFront, ACM validation, email anti-spoofing",
+  "Changes": [
+    {"Action": "UPSERT", "ResourceRecordSet": {"Name": "headlinelatam.com.", "Type": "A", "AliasTarget": {"HostedZoneId": "Z2FDTNDATAQYW2", "DNSName": "d3a3ppc5bujjy3.cloudfront.net.", "EvaluateTargetHealth": false}}},
+    {"Action": "UPSERT", "ResourceRecordSet": {"Name": "headlinelatam.com.", "Type": "AAAA", "AliasTarget": {"HostedZoneId": "Z2FDTNDATAQYW2", "DNSName": "d3a3ppc5bujjy3.cloudfront.net.", "EvaluateTargetHealth": false}}},
+    {"Action": "UPSERT", "ResourceRecordSet": {"Name": "www.headlinelatam.com.", "Type": "A", "AliasTarget": {"HostedZoneId": "Z2FDTNDATAQYW2", "DNSName": "d3a3ppc5bujjy3.cloudfront.net.", "EvaluateTargetHealth": false}}},
+    {"Action": "UPSERT", "ResourceRecordSet": {"Name": "www.headlinelatam.com.", "Type": "AAAA", "AliasTarget": {"HostedZoneId": "Z2FDTNDATAQYW2", "DNSName": "d3a3ppc5bujjy3.cloudfront.net.", "EvaluateTargetHealth": false}}},
+    {"Action": "UPSERT", "ResourceRecordSet": {"Name": "_d52f43aa723ecf789a02ac92f7732045.headlinelatam.com.", "Type": "CNAME", "TTL": 300, "ResourceRecords": [{"Value": "_f88793654e3b1d0ca779cd22f7c2af07.wzccmgtwzk.acm-validations.aws."}]}},
+    {"Action": "UPSERT", "ResourceRecordSet": {"Name": "_4c66ce79d874730dd75639e221b8fd08.www.headlinelatam.com.", "Type": "CNAME", "TTL": 300, "ResourceRecords": [{"Value": "_aba4d74c63abe4638399165e5ebd7d04.wzccmgtwzk.acm-validations.aws."}]}},
+    {"Action": "UPSERT", "ResourceRecordSet": {"Name": "headlinelatam.com.", "Type": "TXT", "TTL": 300, "ResourceRecords": [{"Value": "\"v=spf1 -all\""}]}},
+    {"Action": "UPSERT", "ResourceRecordSet": {"Name": "_dmarc.headlinelatam.com.", "Type": "TXT", "TTL": 3600, "ResourceRecords": [{"Value": "\"v=DMARC1; p=reject; adkim=s; aspf=s\""}]}}
+  ]
+}

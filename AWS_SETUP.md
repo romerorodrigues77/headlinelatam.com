@@ -1,114 +1,126 @@
 # AWS Setup - headlinelatam.com
 
-## ✅ O que foi criado
+Site estático (HTML puro) servido por **S3 + CloudFront**, com DNS no **Route 53**. O domínio continua registrado na **GoDaddy**, só os nameservers apontam para a AWS.
+
+Conta AWS `160184161667`, profile local `romero`.
+
+```
+visitante → Route 53 (ALIAS) → CloudFront E4NSQMSB8LK1Y → S3 headlinelatam.com (privado, via OAC)
+```
+
+---
+
+## 🧱 Recursos
 
 ### 1. **S3 Bucket**
-- **Nome:** `headlinelatam.com`
-- **Region:** `us-east-1`
-- **Configuração:** Website estático com index.html como documento padrão
-- **Acesso:** Público (via CloudFront)
+- **Nome:** `headlinelatam.com` (`us-east-1`)
+- **Acesso:** privado (Block Public Access ligado). Só a CloudFront lê, via Origin Access Control `EWDL38QSVWQ5`.
+- **Bucket policy:** [infra/s3-bucket-policy.json](infra/s3-bucket-policy.json)
 
 ### 2. **CloudFront Distribution**
 - **ID:** `E4NSQMSB8LK1Y`
-- **Domain:** `d3a3ppc5bujjy3.cloudfront.net`
-- **Status:** InProgress (ficará pronto em ~15-20 minutos)
-- **Cache Policy:** Otimizada para conteúdo estático
+- **Domínio padrão:** `d3a3ppc5bujjy3.cloudfront.net` (preview, recebe `x-robots-tag: noindex`)
+- **Aliases:** `headlinelatam.com`, `www.headlinelatam.com`
+- **HTTP → HTTPS:** redirect automático
+- **Default root object:** `index.html`
+- **Erros 403/404:** servem `/404.html` com status 404
+- **CloudFront Functions:**
+  - `headlinelatam-edge-request` (viewer-request) → [infra/edge-request.js](infra/edge-request.js): `www` e outros hosts redirecionam (301) para `https://headlinelatam.com`, `/index.html` vira `/`, e URLs de diretório servem o `index.html`.
+  - `headlinelatam-edge-response` (viewer-response) → [infra/edge-response.js](infra/edge-response.js): `noindex` no host `*.cloudfront.net`.
 
-### 3. **SSL Certificate (ACM)**
+### 3. **Certificado SSL (ACM)**
 - **ARN:** `arn:aws:acm:us-east-1:160184161667:certificate/abc66ab0-1868-400c-82f6-9bcecbd2a7c1`
-- **Domínios:** 
-  - `headlinelatam.com`
-  - `www.headlinelatam.com`
-- **Status:** ⏳ **PENDING_VALIDATION** (precisa validar via DNS)
+- **Domínios:** `headlinelatam.com`, `www.headlinelatam.com`
+- **Status:** ✅ ISSUED, validado por DNS. A renovação é automática enquanto os CNAMEs de validação existirem no Route 53.
+- **TLS mínimo:** `TLSv1.2_2021`, SNI
+
+### 4. **DNS (Route 53)**
+- **Hosted zone:** `Z0269845L2AK7KOYU2TT`
+- **Nameservers** (configurados na GoDaddy em 2026-10-02):
+  ```
+  ns-127.awsdns-15.com
+  ns-560.awsdns-06.net
+  ns-1707.awsdns-21.co.uk
+  ns-1067.awsdns-05.org
+  ```
+- **Registros:**
+
+  | Nome | Tipo | Valor |
+  |---|---|---|
+  | `headlinelatam.com` | A / AAAA (ALIAS) | `d3a3ppc5bujjy3.cloudfront.net` |
+  | `www.headlinelatam.com` | A / AAAA (ALIAS) | `d3a3ppc5bujjy3.cloudfront.net` |
+  | `_d52f43aa…headlinelatam.com` | CNAME | validação ACM |
+  | `_4c66ce79…www.headlinelatam.com` | CNAME | validação ACM |
+  | `headlinelatam.com` | TXT | `v=spf1 -all` |
+  | `_dmarc.headlinelatam.com` | TXT | `v=DMARC1; p=reject; adkim=s; aspf=s` |
+
+- O domínio **não tem e-mail** (nenhum MX). O SPF `-all` e o DMARC `p=reject` impedem que alguém envie e-mail se passando por `@headlinelatam.com`.
+- O painel de DNS da GoDaddy **não vale mais**: qualquer mudança de DNS é feita no Route 53. Na GoDaddy fica só o registro e a renovação do domínio.
+- A fonte dos registros é [infra/route53-records.json](infra/route53-records.json). Como é tudo `UPSERT`, dá para reaplicar sem risco:
+  ```bash
+  aws route53 change-resource-record-sets --hosted-zone-id Z0269845L2AK7KOYU2TT --change-batch file://infra/route53-records.json --profile romero
+  ```
+  ⚠️ Um TXT no domínio raiz substitui o anterior. Se precisar adicionar outro (por exemplo, `google-site-verification`), coloque os dois valores no mesmo registro.
 
 ---
 
-## 📋 Próximas etapas
-
-### 1. **Validar o Certificado SSL na GoDaddy** (IMPORTANTE!)
-
-O certificado precisa ser validado via DNS antes de ser usado. AWS vai enviar um email com os registros DNS necessários, ou você pode fazer manualmente:
-
-1. Acesse a [Console ACM](https://console.aws.amazon.com/acm/home?region=us-east-1)
-2. Clique no certificado `abc66ab0-1868-400c-82f6-9bcecbd2a7c1`
-3. Copie os **registros DNS** (CNAME values)
-4. Vá para a GoDaddy
-5. Adicione os registros DNS ao domínio `headlinelatam.com`
-
-Isso pode levar de alguns minutos até 24 horas para validar.
-
-### 2. **Apontar DNS para CloudFront (Depois de validar o certificado)**
-
-Após o certificado ser validado, adicione este registro na GoDaddy:
-
-```
-Type:  CNAME
-Name:  headlinelatam.com
-Value: d3a3ppc5bujjy3.cloudfront.net
-TTL:   3600
-```
-
-Para `www`, crie outro CNAME:
-
-```
-Type:  CNAME
-Name:  www.headlinelatam.com
-Value: d3a3ppc5bujjy3.cloudfront.net
-TTL:   3600
-```
-
-> **Nota:** Na GoDaddy, você pode precisar remover o `@ (root)` existente se houver conflito com o CNAME.
-
-### 3. **Deploy do Site**
-
-Para fazer upload de arquivos para o S3, use:
+## 🚀 Deploy
 
 ```bash
-# Upload de um arquivo
-aws s3 cp index.html s3://headlinelatam.com/ --profile romero
-
-# Upload recursivo de pasta
-aws s3 sync ./dist s3://headlinelatam.com/ --profile romero --delete
+./deploy.sh
 ```
 
-### 4. **Habilitar o Domínio Customizado no CloudFront**
+O script ([deploy.sh](deploy.sh)):
+1. Sincroniza a pasta com o S3 (`--delete`), ignorando `.git`, `.claude`, `infra/`, `*.md` e `*.sh`.
+2. Assets com cache de 1 ano. `index.html`, `404.html`, `sitemap.xml`, `robots.txt`, `llms.txt` e `site.webmanifest` com cache de 5 minutos.
+3. Invalida `/*` na CloudFront.
 
-Assim que o certificado for validado, execute:
+Para mudar as CloudFront Functions, edite o arquivo em `infra/` e publique:
 
 ```bash
-# Comando para adicionar domínio customizado e certificado ao CloudFront
-# (Já está pronto, só falta validar o certificado)
+aws cloudfront describe-function --name headlinelatam-edge-request --profile romero   # pega o ETag
+aws cloudfront update-function --name headlinelatam-edge-request --if-match <ETAG> \
+  --function-config 'Comment=headlinelatam.com viewer-request,Runtime=cloudfront-js-2.0' --function-code fileb://infra/edge-request.js --profile romero
+aws cloudfront publish-function --name headlinelatam-edge-request --if-match <NOVO_ETAG> --profile romero
 ```
 
 ---
 
-## 📊 Resumo dos Custos
+## 🔍 Verificação
 
-- **S3:** ~$0.023/GB de armazenamento + transferência de dados
-- **CloudFront:** ~$0.085/GB de dados transferidos (primeiros 10TB/mês)
-- **ACM Certificate:** GRÁTIS
-- **Estimado para pequeno site:** ~$5-15/mês
+```bash
+# Delegação no registro do .com
+dig NS headlinelatam.com @a.gtld-servers.net +noall +authority
 
----
+# Resposta direto do Route 53 (sem cache)
+dig headlinelatam.com @ns-127.awsdns-15.com
 
-## 🔗 Links Úteis
-
-- [AWS Console - S3](https://s3.console.aws.amazon.com/s3/buckets/headlinelatam.com?region=us-east-1)
-- [AWS Console - CloudFront](https://console.aws.amazon.com/cloudfront/v3/home?region=us-east-1#/distributions/E4NSQMSB8LK1Y)
-- [AWS Console - ACM Certificates](https://console.aws.amazon.com/acm/home?region=us-east-1)
-
----
-
-## ⚙️ Configuração do Git
-
-Para fazer deploy automático via GitHub Actions, você pode criar um workflow que:
-1. Faz build do site
-2. Faz sync para S3
-3. Invalida cache do CloudFront
-
-Exemplo:
-```yaml
-- name: Deploy to S3
-  run: aws s3 sync ./dist s3://headlinelatam.com/ --delete --profile romero
+# Site
+curl -sI https://headlinelatam.com/
+curl -sI https://www.headlinelatam.com/   # 301 → https://headlinelatam.com/
 ```
 
+Limpar o cache de DNS do Mac:
+
+```bash
+sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+```
+
+---
+
+## 📊 Custos
+
+- **S3:** ~$0.023/GB armazenado
+- **CloudFront:** ~$0.085/GB transferido (os primeiros 1 TB/mês ficam no free tier)
+- **Route 53:** $0.50/mês por hosted zone + ~$0.40 por milhão de consultas (consultas ALIAS para CloudFront são grátis)
+- **ACM:** grátis
+- **Estimado para um site pequeno:** ~$1-5/mês
+
+---
+
+## 🔗 Links
+
+- [S3](https://s3.console.aws.amazon.com/s3/buckets/headlinelatam.com?region=us-east-1)
+- [CloudFront](https://console.aws.amazon.com/cloudfront/v4/home#/distributions/E4NSQMSB8LK1Y)
+- [ACM](https://console.aws.amazon.com/acm/home?region=us-east-1)
+- [Route 53](https://console.aws.amazon.com/route53/v2/hostedzones#ListRecordSets/Z0269845L2AK7KOYU2TT)

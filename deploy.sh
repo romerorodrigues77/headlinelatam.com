@@ -37,13 +37,23 @@ aws s3 sync "$SOURCE_DIR" "s3://$S3_BUCKET/" \
     --exclude ".env*" \
     --exclude "*.md" \
     --exclude ".claude/*" \
-    --exclude "deploy.sh"
+    --exclude "infra/*" \
+    --exclude "*.sh"
 
-# HTML com cache curto, para atualizações chegarem ao navegador
-aws s3 cp index.html "s3://$S3_BUCKET/index.html" \
-    --profile "$AWS_PROFILE" \
-    --content-type "text/html; charset=utf-8" \
-    --cache-control "max-age=300,public"
+# Arquivos que mudam com frequência: cache curto e content-type explícito
+short_cache() { # arquivo content-type
+    [ -f "$SOURCE_DIR/$1" ] || return 0
+    aws s3 cp "$SOURCE_DIR/$1" "s3://$S3_BUCKET/$1" \
+        --profile "$AWS_PROFILE" \
+        --content-type "$2" \
+        --cache-control "max-age=300,public" > /dev/null
+}
+short_cache index.html "text/html; charset=utf-8"
+short_cache 404.html "text/html; charset=utf-8"
+short_cache sitemap.xml "application/xml; charset=utf-8"
+short_cache robots.txt "text/plain; charset=utf-8"
+short_cache llms.txt "text/plain; charset=utf-8"
+short_cache site.webmanifest "application/manifest+json"
 
 echo -e "${GREEN}✓ Upload concluído${NC}"
 
@@ -61,5 +71,5 @@ echo ""
 echo -e "${GREEN}✅ Deploy concluído com sucesso!${NC}"
 echo ""
 echo -e "📍 Site disponível em:"
-echo -e "   → https://d3a3ppc5bujjy3.cloudfront.net (temporário)"
-echo -e "   → https://headlinelatam.com (após validar DNS)"
+echo -e "   → https://headlinelatam.com"
+echo -e "   → https://d3a3ppc5bujjy3.cloudfront.net (preview, com noindex)"

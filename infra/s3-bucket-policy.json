@@ -1,0 +1,3 @@
+{"Version":"2012-10-17","Statement":[
+ {"Sid":"AllowCloudFrontOAC","Effect":"Allow","Principal":{"Service":"cloudfront.amazonaws.com"},"Action":"s3:GetObject","Resource":"arn:aws:s3:::headlinelatam.com/*","Condition":{"StringEquals":{"AWS:SourceArn":"arn:aws:cloudfront::160184161667:distribution/E4NSQMSB8LK1Y"}}}
+]}

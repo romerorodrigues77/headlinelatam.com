@@ -1,0 +1,7 @@
+# headlinelatam.com
+# Everything is public. AI crawlers are welcome too: being cited by
+# answer engines helps founders find the São Paulo team.
+User-agent: *
+Allow: /
+
+Sitemap: https://headlinelatam.com/sitemap.xml
