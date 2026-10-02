@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Headline Latam</title>
+<meta name="description" content="Headline Latam is the Latin America annex of headline.com: the São Paulo team, the local funds, the LATAM portfolio and news, projects and contacts.">
+<link rel="canonical" href="https://headlinelatam.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Headline Latam">
+<meta property="og:description" content="Early-stage venture capital for Latin America, with a global wingspan. The Latin America annex of headline.com.">
+<meta property="og:url" content="https://headlinelatam.com/">
+<meta property="og:image" content="https://headlinelatam.com/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2305e380'/%3E%3Cpath d='M17 14h10v15h10V14h10v36H37V36H27v14H17z' fill='%23000'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Headline Latam",
+  "alternateName": "Headline Brazil",
+  "url": "https://headlinelatam.com/",
+  "parentOrganization": {"@type": "Organization", "name": "Headline", "url": "https://headline.com/"},
+  "address": {"@type": "PostalAddress", "streetAddress": "Av. Chedid Jafet, 75, 29º andar, Vila Olímpia", "addressLocality": "São Paulo", "addressRegion": "SP", "addressCountry": "BR"},
+  "sameAs": ["https://headline.com/", "https://www.linkedin.com/company/headlinevc"]
+}
+</script>
+<style>
+  :root{
+    --bg:#f9f2ee; --ink:#000; --ink-2:#333; --grey:#797979; --line:#d9d2cd; --card:#fffaf7;
+    --green:#05e380; --orange:#ff7959; --yellow:#ffdc59; --blue:#00d5ff;
+    --serif:"Fraunces","RecklessNeue-Medium",Georgia,serif;
+    --sans:"Manrope","Roobert-Regular",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+    --gutter:clamp(16px,4vw,40px); --max:1240px; --t:300ms ease-out;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%;height:auto}
+  h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-.015em;line-height:1.05;margin:0}
+  h1{font-size:clamp(40px,6.2vw,84px)}
+  h2{font-size:clamp(32px,4.2vw,56px)}
+  h3{font-size:clamp(22px,2.2vw,28px);line-height:1.15}
+  p{margin:0}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+  .eyebrow{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--grey)}
+  .lede{font-size:clamp(18px,1.5vw,21px);line-height:1.5;max-width:60ch;color:var(--ink-2)}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;border:1.5px solid var(--ink);font-weight:700;font-size:15px;transition:background var(--t),color var(--t),transform var(--t)}
+  .btn:hover{transform:translateY(-1px)}
+  .btn-solid{background:var(--ink);color:var(--bg)}
+  .btn-solid:hover{background:var(--green);color:var(--ink);border-color:var(--green)}
+  .btn-ghost:hover{background:var(--ink);color:var(--bg)}
+  .ext::after{content:"↗";font-weight:400;margin-left:.35em}
+  section{padding:clamp(64px,9vw,120px) 0;border-top:1px solid var(--line)}
+  .sec-head{display:grid;gap:18px;margin-bottom:clamp(32px,4vw,56px)}
+  @media(min-width:900px){.sec-head{grid-template-columns:1fr 1fr;align-items:end}}
+  .sec-head .lede{justify-self:end;max-width:46ch}
+
+  /* annex strip */
+  .annex{background:var(--ink);color:var(--bg);font-size:14px;padding:10px 0}
+  .annex .wrap{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+  .annex a{color:var(--green);font-weight:700;white-space:nowrap}
+  .annex span b{color:#fff}
+
+  /* nav */
+  header.nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:24px}
+  .brand{display:flex;align-items:baseline;gap:10px}
+  .brand img{height:26px;width:auto}
+  .brand .latam{font-family:var(--serif);font-size:26px;line-height:1;letter-spacing:-.01em}
+  .menu{display:flex;gap:28px;align-items:center;font-weight:600;font-size:15px}
+  .menu a{position:relative;padding:4px 0}
+  .menu a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform var(--t)}
+  .menu a:hover::after{transform:scaleX(1)}
+  .menu .global{color:var(--grey)}
+  .burger{display:none;background:none;border:0;padding:8px;cursor:pointer}
+  .burger span{display:block;width:22px;height:2px;background:var(--ink);margin:5px 0;transition:transform var(--t),opacity var(--t)}
+  @media(max-width:900px){
+    .burger{display:block}
+    .menu{display:none;position:absolute;left:0;right:0;top:72px;background:var(--bg);border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;padding:16px var(--gutter) 24px;gap:14px}
+    .nav.open .menu{display:flex}
+    .nav.open .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .nav.open .burger span:nth-child(2){opacity:0}
+    .nav.open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  }
+
+  /* hero */
+  .hero{padding:clamp(56px,9vw,128px) 0 clamp(48px,6vw,80px);border-top:0}
+  .hero h1{max-width:16ch;margin:18px 0 28px}
+  .hero h1 em{font-style:italic;font-weight:500;background:linear-gradient(transparent 62%,var(--green) 62%,var(--green) 92%,transparent 92%)}
+  .hero .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+  .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-top:clamp(48px,6vw,80px);border-top:1px solid var(--line)}
+  @media(min-width:760px){.stats{grid-template-columns:repeat(4,1fr)}}
+  .stat{padding:22px 20px 22px 0;border-bottom:1px solid var(--line)}
+  @media(min-width:760px){.stat{border-right:1px solid var(--line)}.stat:last-child{border-right:0}.stat:not(:first-child){padding-left:20px}}
+  .stat b{display:block;font-family:var(--serif);font-weight:500;font-size:clamp(30px,3.4vw,46px);line-height:1;letter-spacing:-.02em;margin-bottom:8px}
+  .stat span{font-size:14px;color:var(--grey);line-height:1.35;display:block}
+
+  /* annex explainer */
+  .roles{display:grid;gap:18px}
+  @media(min-width:860px){.roles{grid-template-columns:repeat(3,1fr)}}
+  .role{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 24px;display:grid;gap:12px;align-content:start}
+  .role .dot{width:12px;height:12px;border-radius:50%;background:var(--green)}
+  .role:nth-child(2) .dot{background:var(--orange)}
+  .role:nth-child(3) .dot{background:var(--yellow)}
+  .role p{color:var(--ink-2);font-size:16px}
+  .role a{font-weight:700;border-bottom:1.5px solid var(--ink)}
+
+  /* funds */
+  .funds{display:grid;gap:18px}
+  @media(min-width:900px){.funds{grid-template-columns:repeat(3,1fr)}}
+  .fund{border:1px solid var(--line);border-radius:18px;padding:28px 26px 26px;background:var(--card);display:grid;gap:14px;align-content:start;position:relative;overflow:hidden}
+  .fund::before{content:"";position:absolute;inset:0 0 auto 0;height:6px;background:var(--green)}
+  .fund:nth-child(2)::before{background:var(--orange)}
+  .fund:nth-child(3)::before{background:var(--blue)}
+  .fund .tag{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
+  .fund .size{font-family:var(--serif);font-size:clamp(34px,3.6vw,48px);line-height:1;letter-spacing:-.02em}
+  .fund .size small{font-family:var(--sans);font-size:14px;letter-spacing:0;color:var(--grey);display:block;margin-top:8px}
+  .fund p{color:var(--ink-2);font-size:16px}
+  .fund ul{margin:4px 0 0;padding:0;list-style:none;display:grid;gap:6px;font-size:14px;color:var(--ink-2)}
+  .fund li::before{content:"—";color:var(--grey);margin-right:8px}
+
+  /* portfolio */
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+  .filters button{font:inherit;font-weight:700;font-size:14px;padding:9px 16px;border-radius:999px;border:1.5px solid var(--line);background:transparent;cursor:pointer;transition:all var(--t)}
+  .filters button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  @media(min-width:620px){.grid{grid-template-columns:repeat(3,1fr)}}
+  @media(min-width:960px){.grid{grid-template-columns:repeat(4,1fr)}}
+  .co{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:14px;min-height:150px;transition:transform var(--t),border-color var(--t),box-shadow var(--t)}
+  .co:hover{transform:translateY(-3px);border-color:var(--ink);box-shadow:0 10px 30px -18px rgba(0,0,0,.45)}
+  .co.hidden{display:none}
+  .co-logo{height:48px;display:flex;align-items:center}
+  .co-logo img{max-height:44px;width:auto;max-width:100%;object-fit:contain}
+  .co-text{font-family:var(--serif);font-size:28px;letter-spacing:-.02em}
+  .co-meta{margin-top:auto;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:13px}
+  .co-name{font-weight:700}
+  .co-badge{color:var(--ink);background:var(--green);border-radius:999px;padding:2px 9px;font-weight:700;font-size:12px}
+  .co.exit .co-badge{background:var(--yellow)}
+  .co-year{color:var(--grey)}
+  .foot-note{margin-top:28px;color:var(--grey);font-size:14px}
+  .foot-note a{border-bottom:1.5px solid var(--grey);color:var(--ink)}
+
+  /* news */
+  .news{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+  .news-item a{display:grid;gap:4px 24px;padding:20px 0;border-bottom:1px solid var(--line);transition:background var(--t)}
+  @media(min-width:800px){.news-item a{grid-template-columns:160px 1fr 190px;align-items:baseline}}
+  .news-item a:hover .news-title{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:3px}
+  .news-co{font-weight:700;font-size:14px}
+  .news-title{font-family:var(--serif);font-size:clamp(18px,1.6vw,22px);line-height:1.25}
+  .news-src{color:var(--grey);font-size:14px}
+  @media(min-width:800px){.news-src{text-align:right}}
+  .news-item.more{display:none}
+  .news.expanded .news-item.more{display:list-item}
+  .news-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;align-items:center}
+
+  /* team */
+  .team{display:grid;gap:22px 18px;grid-template-columns:repeat(2,1fr)}
+  @media(min-width:760px){.team{grid-template-columns:repeat(3,1fr)}}
+  .person{display:grid;gap:12px;align-content:start}
+  .person img{border-radius:16px;aspect-ratio:1/1;object-fit:cover;width:100%;filter:grayscale(1);transition:filter var(--t)}
+  .person:hover img{filter:grayscale(0)}
+  .person h3{font-size:22px}
+  .person .title{color:var(--grey);font-size:14px;margin-top:-6px}
+  .person p{font-size:15px;color:var(--ink-2)}
+  .person .links{display:flex;gap:14px;font-size:14px;font-weight:700}
+  .person .links a{border-bottom:1.5px solid var(--ink)}
+  .person .links a:hover{border-color:var(--green)}
+
+  /* projects */
+  .projects{display:grid;gap:18px}
+  @media(min-width:900px){.projects{grid-template-columns:repeat(3,1fr)}}
+  .project{border:1px solid var(--line);border-radius:18px;padding:28px 26px;background:var(--ink);color:var(--bg);display:grid;gap:14px;align-content:start;transition:transform var(--t)}
+  .project:hover{transform:translateY(-3px)}
+  .project .tag{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green)}
+  .project h3{color:#fff}
+  .project p{color:#cfc8c3;font-size:16px}
+  .project .go{margin-top:6px;font-weight:700;color:var(--green)}
+  .project.light{background:var(--card);color:var(--ink)}
+  .project.light h3{color:var(--ink)}
+  .project.light p{color:var(--ink-2)}
+  .project.light .tag{color:var(--grey)}
+  .project.light .go{color:var(--ink)}
+
+  /* contact */
+  .contact{display:grid;gap:40px}
+  @media(min-width:900px){.contact{grid-template-columns:1.2fr 1fr}}
+  .contact h2{max-width:14ch}
+  .addr{display:grid;gap:22px;align-content:start}
+  .addr .block{border-top:1px solid var(--line);padding-top:16px}
+  .addr .lbl{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);margin-bottom:6px}
+  .addr a{border-bottom:1.5px solid var(--ink)}
+  .offices{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px;color:var(--grey)}
+  .offices b{color:var(--ink)}
+
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:40px 0 48px;font-size:14px;color:var(--grey)}
+  footer .wrap{display:grid;gap:24px}
+  @media(min-width:800px){footer .wrap{grid-template-columns:1fr auto;align-items:start}}
+  footer .brand img{height:20px}
+  footer .brand .latam{font-size:20px}
+  footer nav{display:flex;flex-wrap:wrap;gap:8px 20px}
+  footer nav a{color:var(--ink);font-weight:600}
+  footer nav a:hover{text-decoration:underline}
+  footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<div class="annex">
+  <div class="wrap">
+    <span><b>Headline Latam</b> is the Latin America annex of headline.com. The global portfolio, team and perspectives live on the main site.</span>
+    <a class="ext" href="https://headline.com" target="_blank" rel="noopener">Go to headline.com</a>
+  </div>
+</div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Headline Latam">
+      <img src="assets/img/logos/headline-brasil.webp" alt="Headline" width="449" height="88">
+      <span class="latam">Latam</span>
+    </a>
+    <button class="burger" aria-label="Menu" aria-expanded="false" onclick="toggleNav()"><span></span><span></span><span></span></button>
+    <nav class="menu">
+      <a href="#funds">Funds</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#news">News</a>
+      <a href="#team">Team</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <a class="global ext" href="https://headline.com" target="_blank" rel="noopener">headline.com</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Headline · São Paulo · Latin America</p>
+    <h1>Early-stage venture capital for Latin America, with a <em>global wingspan</em>.</h1>
+    <p class="lede">We are the São Paulo team of Headline, a global venture firm with offices in San Francisco, Berlin, Paris, London, Hamburg, Luxembourg, Taipei and Tokyo. We back founders from Seed to Series B across Brazil and Latin America, and connect them to Headline's network in the United States, Europe and Asia.</p>
+    <div class="ctas">
+      <a class="btn btn-solid" href="#contact">Pitch us</a>
+      <a class="btn btn-ghost ext" href="https://headline.com/portfolio" target="_blank" rel="noopener">Global portfolio</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>2012</b><span>Investing in Brazil since, first as Redpoint eventures, now as Headline</span></div>
+      <div class="stat"><b>R$ 2.0 bi</b><span>Under management across four Latin America funds</span></div>
+      <div class="stat"><b>45+</b><span>Companies backed in the region, from Seed to growth</span></div>
+      <div class="stat"><b>US$ 1 bi</b><span>Pismo, sold to Visa in 2024, the largest Brazilian startup exit in years</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>One firm, one local chapter.</h2>
+      <p class="lede">Headline Latam does not replace headline.com. It is where the local team keeps what is specific to the region.</p>
+    </div>
+    <div class="roles">
+      <div class="role"><div class="dot"></div><h3>Local funds</h3><p>The vehicles that invest here, how they are structured and who manages them, including the partnership with XP.</p><a href="#funds">See the funds</a></div>
+      <div class="role"><div class="dot"></div><h3>LATAM portfolio and news</h3><p>The companies we back in Brazil and Latin America, plus press coverage of their rounds, exits and milestones.</p><a href="#portfolio">See the portfolio</a></div>
+      <div class="role"><div class="dot"></div><h3>Projects and contacts</h3><p>Tools and writing from the São Paulo team, the people to reach, and the office address.</p><a href="#projects">See the projects</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="funds">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>The Latin America funds.</h2>
+      <p class="lede">Headline's Brazil Early Fund family: two generations with Redpoint eventures, the current fund with XP, and the global growth fund that follows our companies as they scale.</p>
+    </div>
+    <div class="funds">
+      <div class="fund">
+        <span class="tag">Now investing · 2022–</span>
+        <div class="size">R$ 915 mi<small>Headline Brazil III · Headline XP FIP</small></div>
+        <p>Headline's third Brazil fund, co-managed with XP Vista Asset Management. Raised in 2022 from more than 12,000 individual investors through XP, it was the first venture capital fund in Brazil to open early-stage investing to XP's clients at scale.</p>
+        <ul>
+          <li>Seed to Series B, Brazil and Latin America</li>
+          <li>Minority stakes, typically up to 20%</li>
+          <li>Portfolio of around 25 companies over four years</li>
+          <li>Managed by Romero Rodrigues and the São Paulo team</li>
+        </ul>
+      </div>
+      <div class="fund">
+        <span class="tag">Harvesting · 2012–2021</span>
+        <div class="size">US$ 305 mi<small>Redpoint eventures I and II</small></div>
+        <p>Headline's first two Brazil funds, launched in 2012 as a joint venture between e.ventures (now Headline) and Redpoint Ventures. Fund I closed at US$ 130 million in 2012, the first dedicated early-stage fund of its size in the country.</p>
+        <ul>
+          <li>Pismo, Olist, Rappi, Resultados Digitais, Creditas</li>
+          <li>Co-managed by Romero Rodrigues since 2015</li>
+          <li>Rebranded under Headline in 2021</li>
+        </ul>
+      </div>
+      <div class="fund">
+        <span class="tag">Global · Series B and later</span>
+        <div class="size">Global Growth<small>Headline Global Growth IV · €776 mi</small></div>
+        <p>Headline's global growth fund invests in the best companies from every regional team as they scale. In Latin America it has backed Pismo, Creditas and Buk alongside the local fund.</p>
+        <ul>
+          <li>Series B onwards, worldwide</li>
+          <li>Follows local-fund companies into growth rounds</li>
+          <li>Managed from San Francisco with the regional teams</li>
+        </ul>
+      </div>
+    </div>
+    <p class="foot-note">Headline also runs early-stage funds in the United States, Europe and Asia. The full structure is described on <a class="ext" href="https://headline.com/about" target="_blank" rel="noopener">headline.com/about</a>.</p>
+  </div>
+</section>
+
+<section id="portfolio">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Companies we back in Latin America.</h2>
+      <p class="lede">Fintech, software, consumer, health and infrastructure, from Seed to growth. Every company here is also listed on the global portfolio.</p>
+    </div>
+    <div class="filters" role="group" aria-label="Filter portfolio">
+      <button type="button" aria-pressed="true" data-filter="all">All</button>
+      <button type="button" aria-pressed="false" data-filter="recent">Recent · 2023–2026</button>
+      <button type="button" aria-pressed="false" data-filter="exit">Exits</button>
+    </div>
+    <div class="grid" id="grid">
+<a class="co  exit" href="https://www.pismo.io/" target="_blank" rel="noopener" data-year="2015"><span class="co-logo"><img src="assets/img/logos/pismo.webp" alt="Pismo" width="219" height="70" loading="lazy"></span><span class="co-meta"><span class="co-name">Pismo</span><span class=co-badge>Acquired by Visa · US$ 1 bi</span><span class=co-year>2015</span></span></a>
+<a class="co  " href="https://wellhub.com/pt-br/" target="_blank" rel="noopener" data-year="2013"><span class="co-logo"><img src="assets/img/logos/wellhub.webp" alt="Wellhub" width="226" height="44" loading="lazy"></span><span class="co-meta"><span class="co-name">Wellhub</span><span class=co-badge>Unicorn</span><span class=co-year>2013</span></span></a>
+<a class="co  " href="https://olist.com" target="_blank" rel="noopener" data-year="2015"><span class="co-logo"><img src="assets/img/logos/olist.webp" alt="Olist" width="144" height="69" loading="lazy"></span><span class="co-meta"><span class="co-name">Olist</span><span class=co-badge>Unicorn</span><span class=co-year>2015</span></span></a>
+<a class="co  " href="https://www.rappi.com.br" target="_blank" rel="noopener" data-year=""><span class="co-logo"><img src="assets/img/logos/rappi.webp" alt="Rappi" width="210" height="88" loading="lazy"></span><span class="co-meta"><span class="co-name">Rappi</span><span class=co-badge>Unicorn</span></span></a>
+<a class="co  " href="https://www.abcdaconstrucao.com.br/" target="_blank" rel="noopener" data-year="2019"><span class="co-logo"><img src="assets/img/logos/abc-da-construcao.webp" alt="ABC da Construção" width="70" height="70" loading="lazy"></span><span class="co-meta"><span class="co-name">ABC da Construção</span><span class=co-year>2019</span></span></a>
+<a class="co recent " href="https://www.blips.com.br" target="_blank" rel="noopener" data-year="2024"><span class="co-logo"><img src="assets/img/logos/blips.webp" alt="Blips" width="217" height="70" loading="lazy"></span><span class="co-meta"><span class="co-name">Blips</span><span class=co-year>2024</span></span></a>
+<a class="co recent " href="https://avenia.io" target="_blank" rel="noopener" data-year="2026"><span class="co-logo"><img src="assets/img/logos/avenia.webp" alt="Avenia" width="480" height="72" loading="lazy"></span><span class="co-meta"><span class="co-name">Avenia</span><span class=co-year>2026</span></span></a>
+<a class="co recent " href="https://datamint.com.br/en/" target="_blank" rel="noopener" data-year="2026"><span class="co-logo"><img src="assets/img/logos/datamint.webp" alt="Datamint" width="498" height="88" loading="lazy"></span><span class="co-meta"><span class="co-name">Datamint</span><span class=co-year>2026</span></span></a>
+<a class="co recent " href="https://vixtra.com/" target="_blank" rel="noopener" data-year="2026"><span class="co-logo"><img src="assets/img/logos/vixtra.webp" alt="Vixtra" width="387" height="88" loading="lazy"></span><span class="co-meta"><span class="co-name">Vixtra</span><span class=co-year>2026</span></span></a>
+<a class="co  " href="https://condoconta.com.br" target="_blank" rel="noopener" data-year="2021"><span class="co-logo"><img src="assets/img/logos/condoconta.webp" alt="CondoConta" width="240" height="38" loading="lazy"></span><span class="co-meta"><span class="co-name">CondoConta</span><span class=co-year>2021</span></span></a>
+<a class="co recent " href="https://heroseguros.com.br/" target="_blank" rel="noopener" data-year="2026"><span class="co-logo"><img src="assets/img/logos/hero-seguros.webp" alt="Hero Seguros" width="214" height="88" loading="lazy"></span><span class="co-meta"><span class="co-name">Hero Seguros</span><span class=co-year>2026</span></span></a>
+<a class="co recent " href="https://mercadoderecebiveis.com.br/" target="_blank" rel="noopener" data-year="2025"><span class="co-logo"><img src="assets/img/logos/mercado-de-recebiveis.webp" alt="Mercado de Recebíveis" width="364" height="88" loading="lazy"></span><span class="co-meta"><span class="co-name">Mercado de Recebíveis</span><span class=co-year>2025</span></span></a>
+<a class="co recent " href="https://neurogram.com/" target="_blank" rel="noopener" data-year="2025"><span class="co-logo"><img src="assets/img/logos/neurogram.webp" alt="Neurogram" width="440" height="88" loading="lazy"></span><span class="co-meta"><span class="co-name">Neurogram</span><span class=co-year>2025</span></span></a>
+<a class="co  " href="https://housi.com" target="_blank" rel="noopener" data-year="2019"><span class="co-logo"><img src="assets/img/logos/housi.webp" alt="Housi" width="480" height="48" loading="lazy"></span><span class="co-meta"><span class="co-name">Housi</span><span class=co-year>2019</span></span></a>
+<a class="co recent " href="https://vaas.com.br/" target="_blank" rel="noopener" data-year="2025"><span class="co-logo"><img src="assets/img/logos/vaas.webp" alt="Vaas" width="285" height="55" loading="lazy"></span><span class="co-meta"><span class="co-name">Vaas</span><span class=co-year>2025</span></span></a>
+<a class="co  " href="https://www.tembici.com.br/pt/" target="_blank" rel="noopener" data-year="2020"><span class="co-logo"><img src="assets/img/logos/tembici.webp" alt="Tembici" width="165" height="32" loading="lazy"></span><span class="co-meta"><span class="co-name">Tembici</span><span class=co-year>2020</span></span></a>
+<a class="co  " href="https://eureciclo.com.br/" target="_blank" rel="noopener" data-year="2020"><span class="co-logo"><img src="assets/img/logos/eureciclo.webp" alt="eureciclo" width="209" height="70" loading="lazy"></span><span class="co-meta"><span class="co-name">eureciclo</span><span class=co-year>2020</span></span></a>
+<a class="co recent " href="https://www.delfos.energy/" target="_blank" rel="noopener" data-year="2023"><span class="co-logo"><img src="assets/img/logos/delfos.webp" alt="Delfos" width="145" height="46" loading="lazy"></span><span class="co-meta"><span class="co-name">Delfos</span><span class=co-year>2023</span></span></a>
+<a class="co recent " href="https://revertai.com.br/" target="_blank" rel="noopener" data-year="2026"><span class="co-logo"><img src="assets/img/logos/revert.webp" alt="Revert" width="144" height="44" loading="lazy"></span><span class="co-meta"><span class="co-name">Revert</span><span class=co-year>2026</span></span></a>
+<a class="co recent " href="https://alia.do" target="_blank" rel="noopener" data-year="2025"><span class="co-logo"><img src="assets/img/logos/alia-do.webp" alt="Alia.do" width="391" height="88" loading="lazy"></span><span class="co-meta"><span class="co-name">Alia.do</span><span class=co-year>2025</span></span></a>
+<a class="co recent " href="https://celero.com.br" target="_blank" rel="noopener" data-year="2025"><span class="co-logo"><img src="assets/img/logos/celero.webp" alt="Celero" width="182" height="77" loading="lazy"></span><span class="co-meta"><span class="co-name">Celero</span><span class=co-year>2025</span></span></a>
+<a class="co recent " href="https://doc9.com.br/" target="_blank" rel="noopener" data-year="2025"><span class="co-logo"><img src="assets/img/logos/doc9.webp" alt="Doc9" width="255" height="88" loading="lazy"></span><span class="co-meta"><span class="co-name">Doc9</span><span class=co-year>2025</span></span></a>
+<a class="co recent " href="https://jumpad.ai/" target="_blank" rel="noopener" data-year="2025"><span class="co-logo"><img src="assets/img/logos/jumpad.webp" alt="Jumpad" width="363" height="88" loading="lazy"></span><span class="co-meta"><span class="co-name">Jumpad</span><span class=co-year>2025</span></span></a>
+<a class="co recent " href="https://pipeimob.com.br/" target="_blank" rel="noopener" data-year="2025"><span class="co-logo"><img src="assets/img/logos/pipeimob.webp" alt="PipeImob" width="254" height="72" loading="lazy"></span><span class="co-meta"><span class="co-name">PipeImob</span><span class=co-year>2025</span></span></a>
+<a class="co recent " href="https://www.horuss.ai/" target="_blank" rel="noopener" data-year="2024"><span class="co-logo"><img src="assets/img/logos/horuss.webp" alt="Horuss" width="208" height="46" loading="lazy"></span><span class="co-meta"><span class="co-name">Horuss</span><span class=co-year>2024</span></span></a>
+<a class="co recent " href="https://turn2c.com" target="_blank" rel="noopener" data-year="2024"><span class="co-logo"><img src="assets/img/logos/turn2c.webp" alt="Turn2C" width="303" height="88" loading="lazy"></span><span class="co-meta"><span class="co-name">Turn2C</span><span class=co-year>2024</span></span></a>
+<a class="co recent " href="#" target="_blank" rel="noopener" data-year="2023"><span class="co-logo"><img src="assets/img/logos/cycles.webp" alt="Cycles" width="258" height="88" loading="lazy"></span><span class="co-meta"><span class="co-name">Cycles</span><span class=co-year>2023</span></span></a>
+<a class="co recent " href="https://fiibo.com.br" target="_blank" rel="noopener" data-year="2023"><span class="co-logo"><img src="assets/img/logos/fiibo.webp" alt="Fiibo" width="159" height="88" loading="lazy"></span><span class="co-meta"><span class="co-name">Fiibo</span><span class=co-year>2023</span></span></a>
+<a class="co recent " href="#" target="_blank" rel="noopener" data-year="2023"><span class="co-logo"><img src="assets/img/logos/fin-x.webp" alt="Fin-X" width="206" height="88" loading="lazy"></span><span class="co-meta"><span class="co-name">Fin-X</span><span class=co-year>2023</span></span></a>
+<a class="co recent " href="https://hubii.com.br/" target="_blank" rel="noopener" data-year="2023"><span class="co-logo"><img src="assets/img/logos/hubii.webp" alt="Hubii" width="186" height="88" loading="lazy"></span><span class="co-meta"><span class="co-name">Hubii</span><span class=co-year>2023</span></span></a>
+<a class="co recent " href="https://missionbrasil.com.br/" target="_blank" rel="noopener" data-year="2023"><span class="co-logo"><img src="assets/img/logos/mission-brasil.webp" alt="Mission Brasil" width="105" height="88" loading="lazy"></span><span class="co-meta"><span class="co-name">Mission Brasil</span><span class=co-year>2023</span></span></a>
+<a class="co recent " href="https://trinus.co" target="_blank" rel="noopener" data-year="2023"><span class="co-logo"><img src="assets/img/logos/trinus.webp" alt="Trinus" width="253" height="88" loading="lazy"></span><span class="co-meta"><span class="co-name">Trinus</span><span class=co-year>2023</span></span></a>
+<a class="co recent " href="#" target="_blank" rel="noopener" data-year="2023"><span class="co-logo"><img src="assets/img/logos/upik.webp" alt="Upik" width="88" height="88" loading="lazy"></span><span class="co-meta"><span class="co-name">Upik</span><span class=co-year>2023</span></span></a>
+<a class="co  " href="#" target="_blank" rel="noopener" data-year="2022"><span class="co-logo"><img src="assets/img/logos/smart-break.webp" alt="Smart Break" width="175" height="88" loading="lazy"></span><span class="co-meta"><span class="co-name">Smart Break</span><span class=co-year>2022</span></span></a>
+<a class="co  " href="https://arena.im/" target="_blank" rel="noopener" data-year="2020"><span class="co-logo"><img src="assets/img/logos/arena.webp" alt="Arena" width="350" height="88" loading="lazy"></span><span class="co-meta"><span class="co-name">Arena</span><span class=co-year>2020</span></span></a>
+<a class="co  exit" href="#" target="_blank" rel="noopener" data-year="2020"><span class="co-logo"><img src="assets/img/logos/kzas.webp" alt="Kzas" width="65" height="88" loading="lazy"></span><span class="co-meta"><span class="co-name">Kzas</span><span class=co-badge>Acquired by Creditas</span><span class=co-year>2020</span></span></a>
+<a class="co  exit" href="https://antecipa.com/" target="_blank" rel="noopener" data-year="2019"><span class="co-logo"><img src="assets/img/logos/antecipa.webp" alt="Antecipa" width="200" height="67" loading="lazy"></span><span class="co-meta"><span class="co-name">Antecipa</span><span class=co-badge>Acquired by XP</span><span class=co-year>2019</span></span></a>
+<a class="co  " href="https://gigu.co/br" target="_blank" rel="noopener" data-year="2019"><span class="co-logo"><img src="assets/img/logos/gigu.webp" alt="GigU" width="169" height="88" loading="lazy"></span><span class="co-meta"><span class="co-name">GigU</span><span class=co-year>2019</span></span></a>
+<a class="co  " href="https://vittude.com/" target="_blank" rel="noopener" data-year="2019"><span class="co-logo"><img src="assets/img/logos/vittude.webp" alt="Vittude" width="240" height="45" loading="lazy"></span><span class="co-meta"><span class="co-name">Vittude</span><span class=co-year>2019</span></span></a>
+<a class="co  exit" href="https://www.repassa.com.br" target="_blank" rel="noopener" data-year="2018"><span class="co-logo"><img src="assets/img/logos/repassa.webp" alt="Repassa" width="364" height="88" loading="lazy"></span><span class="co-meta"><span class="co-name">Repassa</span><span class=co-badge>Acquired by Renner</span><span class=co-year>2018</span></span></a>
+<a class="co  " href="https://www.cortex-intelligence.com/en/" target="_blank" rel="noopener" data-year="2015"><span class="co-logo"><img src="assets/img/logos/cortex.webp" alt="Cortex" width="232" height="56" loading="lazy"></span><span class="co-meta"><span class="co-name">Cortex</span><span class=co-year>2015</span></span></a>
+<a class="co  exit" href="#" target="_blank" rel="noopener" data-year=""><span class="co-logo"><img src="assets/img/logos/viajanet.webp" alt="ViajaNet" width="110" height="43" loading="lazy"></span><span class="co-meta"><span class="co-name">ViajaNet</span><span class=co-badge>Acquired by Decolar</span></span></a>
+<a class="co" href="https://www.creditas.com" target="_blank" rel="noopener" data-year="2017"><span class="co-logo co-text">Creditas</span><span class="co-meta"><span class="co-name">Creditas</span><span class="co-badge">Unicorn</span><span class="co-year">2017</span></span></a>
+<a class="co" href="https://www.buk.cl" target="_blank" rel="noopener" data-year="2019"><span class="co-logo co-text">Buk</span><span class="co-meta"><span class="co-name">Buk</span><span class="co-badge">HR software</span><span class="co-year">2019</span></span></a>
+    </div>
+    <p class="foot-note">Logos link to each company's site. Browse the complete Headline portfolio, with fund and sector filters, on <a class="ext" href="https://headline.com/portfolio" target="_blank" rel="noopener">headline.com/portfolio</a>.</p>
+  </div>
+</section>
+
+<section id="news">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>News from the region.</h2>
+      <p class="lede">Rounds, exits and milestones of the Latin America portfolio, as covered by the press. Titles are kept as each outlet published them.</p>
+    </div>
+    <ul class="news" id="newslist">
+<li class="news-item"><a href="https://exame.com/insight/com-r-5-bilhoes-processados-revert-atrai-valor-capital-e-ja-mira-nova-rodada/p" target="_blank" rel="noopener"><span class="news-co">Revert</span><span class="news-title">Com R$ 5 bilhões processados, Revert atrai Valor Capital e já mira nova rodada</span><span class="news-src">Exame · Aug 2026</span></a></li>
+<li class="news-item"><a href="https://braziljournal.com/sujeira-no-painel-mato-ao-redor-a-datamint-tem-uma-ai-que-apita/" target="_blank" rel="noopener"><span class="news-co">Datamint</span><span class="news-title">Sujeira no painel? Mato ao redor? A DataMint tem uma AI que apita</span><span class="news-src">Brazil Journal · Jun 2026</span></a></li>
+<li class="news-item"><a href="https://pipelinevalor.globo.com/negocios/noticia/vixtra-capta-r-45-milhoes-para-ampliar-trade-finance.ghtml" target="_blank" rel="noopener"><span class="news-co">Vixtra</span><span class="news-title">Vixtra capta R$ 45 milhões para ampliar trade finance</span><span class="news-src">Pipeline Valor · Jun 2026</span></a></li>
+<li class="news-item"><a href="https://braziljournal.com/a-rodada-da-hero-que-quer-transformar-o-seguro-viagem/" target="_blank" rel="noopener"><span class="news-co">Hero Seguros</span><span class="news-title">A rodada da Hero, que quer transformar o seguro viagem</span><span class="news-src">Brazil Journal · Mar 2026</span></a></li>
+<li class="news-item"><a href="https://neofeed.com.br/startups/o-que-visa-e-headline-viram-na-celero/" target="_blank" rel="noopener"><span class="news-co">Celero</span><span class="news-title">O que Visa e Headline viram na Celero</span><span class="news-src">NeoFeed · Mar 2026</span></a></li>
+<li class="news-item"><a href="https://braziljournal.com/swift-killer-a-rodada-da-avenia-a-emissora-da-maior-stablecoin-em-real/" target="_blank" rel="noopener"><span class="news-co">Avenia</span><span class="news-title">‘SWIFT killer’. A rodada da Avenia, a emissora da maior stablecoin em real</span><span class="news-src">Brazil Journal · Feb 2026</span></a></li>
+<li class="news-item"><a href="https://exame.com/negocios/startup-de-ia-que-ouve-vendedores-em-lojas-fisicas-levanta-r-13-milhoes/" target="_blank" rel="noopener"><span class="news-co">Alia.do</span><span class="news-title">Startup de IA que ‘ouve’ vendedores em lojas físicas levanta R$ 13 milhões</span><span class="news-src">Exame · Jan 2026</span></a></li>
+<li class="news-item"><a href="https://pipelinevalor.globo.com/startups/noticia/headline-e-domo-aumentam-aposta-na-gig-economy-com-mission-brasil.ghtml" target="_blank" rel="noopener"><span class="news-co">Mission Brasil</span><span class="news-title">Headline e Domo aumentam aposta na gig economy com Mission Brasil</span><span class="news-src">Pipeline Valor · Dec 2025</span></a></li>
+<li class="news-item more"><a href="https://neofeed.com.br/startups/a-fintech-multiplicou-seu-valor-por-quatro-em-menos-de-dois-anos-e-ja-vale-r-300-milhoes/" target="_blank" rel="noopener"><span class="news-co">Mercado de Recebíveis</span><span class="news-title">A fintech que multiplicou seu valor por quatro em menos de dois anos. E já vale R$ 300 milhões</span><span class="news-src">NeoFeed · Aug 2025</span></a></li>
+<li class="news-item more"><a href="https://forbes.com.br/escolhas-do-editor/2025/08/aos-21-anos-ela-criou-uma-startup-que-ja-captou-r-23-milhoes/" target="_blank" rel="noopener"><span class="news-co">Neurogram</span><span class="news-title">Aos 21 Anos, Ela Criou uma Startup Que Já Captou R$ 23 Milhões</span><span class="news-src">Forbes Brasil · Aug 2025</span></a></li>
+<li class="news-item more"><a href="https://neofeed.com.br/startups/esse-trio-vendeu-sua-primeira-startup-por-us-100-milhoes-agora-quer-prevenir-fraudes/" target="_blank" rel="noopener"><span class="news-co">Vaas</span><span class="news-title">Esse trio vendeu sua primeira startup por US$ 100 milhões. Agora, quer prevenir fraudes</span><span class="news-src">NeoFeed · Aug 2025</span></a></li>
+<li class="news-item more"><a href="https://neofeed.com.br/startups/ele-vendeu-o-zap-a-suahouse-e-a-kzas-e-agora-atraiu-um-cheque-da-headline-para-sua-nova-startup/" target="_blank" rel="noopener"><span class="news-co">PipeImob</span><span class="news-title">Ele vendeu o ZAP, a SuaHouse e a Kzas. E, agora, atraiu um cheque da Headline para sua nova startup</span><span class="news-src">NeoFeed · Aug 2025</span></a></li>
+<li class="news-item more"><a href="https://braziljournal.com/headline-avalia-a-blips-em-r-500-milhoes/" target="_blank" rel="noopener"><span class="news-co">Blips</span><span class="news-title">Headline avalia a Blips em R$ 500 milhões</span><span class="news-src">Brazil Journal · May 2025</span></a></li>
+<li class="news-item more"><a href="https://neofeed.com.br/startups/headline-da-o-veredito-para-seu-13o-investimento/" target="_blank" rel="noopener"><span class="news-co">Doc9</span><span class="news-title">Headline dá o &quot;veredito&quot; para seu 13º investimento</span><span class="news-src">NeoFeed · Apr 2025</span></a></li>
+<li class="news-item more"><a href="https://braziljournal.com/a-horuss-ai-quer-levar-eficiencia-aos-planos-de-saude-com-dados-e-machine-learning/" target="_blank" rel="noopener"><span class="news-co">Horuss</span><span class="news-title">A Horuss AI quer levar eficiência aos planos de saúde (com dados e machine learning)</span><span class="news-src">Brazil Journal · Sep 2024</span></a></li>
+<li class="news-item more"><a href="https://neofeed.com.br/startups/em-seu-setimo-cheque-headline-investe-em-fintech-de-consorcio-turn2c/" target="_blank" rel="noopener"><span class="news-co">Turn2C</span><span class="news-title">Em seu sétimo cheque, Headline investe em fintech de consórcio Turn2C</span><span class="news-src">NeoFeed · Mar 2024</span></a></li>
+<li class="news-item more"><a href="https://imoveis.estadao.com.br/noticias/startup-arquiteto-de-bolso-recebe-aporte-de-r-15-milhoes-para-desenvolver-novos-produtos/" target="_blank" rel="noopener"><span class="news-co">Upik</span><span class="news-title">Startup Arquiteto de Bolso recebe aporte de R$ 15 milhões para desenvolver novos produtos</span><span class="news-src">Estadão · Mar 2024</span></a></li>
+<li class="news-item more"><a href="https://valor.globo.com/financas/noticia/2023/12/15/headline-lidera-rodada-na-trinus-de-ate-r-70-milhoes.ghtml" target="_blank" rel="noopener"><span class="news-co">Trinus</span><span class="news-title">Headline, de Romero Rodrigues, lidera rodada na Trinus de até R$ 70 milhões</span><span class="news-src">Valor · Dec 2023</span></a></li>
+<li class="news-item more"><a href="https://pipelinevalor.globo.com/startups/noticia/marketplace-de-saude-fiibo-atrai-headline-brasil-e-fundo-do-einstein.ghtml" target="_blank" rel="noopener"><span class="news-co">Fiibo</span><span class="news-title">Marketplace de saúde, Fiibo atrai Headline Brasil e fundo do Einstein</span><span class="news-src">Pipeline Valor · Aug 2023</span></a></li>
+<li class="news-item more"><a href="https://fortune.com/2023/07/25/headline-brazil-pismo-visa/" target="_blank" rel="noopener"><span class="news-co">Pismo</span><span class="news-title">How VC Headline notched a 30% stake in Brazil’s biggest startup acquisition in 5 years</span><span class="news-src">Fortune · Jul 2023</span></a></li>
+<li class="news-item more"><a href="https://www.infomoney.com.br/negocios/fundo-headline-xp-mira-na-saude-e-investe-r-78-mi-na-healtech-fin-x/" target="_blank" rel="noopener"><span class="news-co">Fin-X</span><span class="news-title">Fundo Headline XP mira na saúde e investe R$ 7,8 mi na healtech Fin-X</span><span class="news-src">InfoMoney · Mar 2023</span></a></li>
+    </ul>
+    <div class="news-actions">
+      <button class="btn btn-ghost" type="button" id="morenews" onclick="toggleNews()">Show earlier news</button>
+      <a class="btn btn-ghost ext" href="https://headline.com" target="_blank" rel="noopener">Headline newsletter, LatAm edition</a>
+    </div>
+  </div>
+</section>
+
+<section id="team">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>The São Paulo team.</h2>
+      <p class="lede">Investors on the ground in Brazil, part of Headline's global investment team. Full profiles are on headline.com.</p>
+    </div>
+    <div class="team">
+      <div class="person">
+        <img src="assets/img/team/romero-rodrigues.jpg" alt="Romero Rodrigues" width="640" height="640" loading="lazy">
+        <h3><a href="https://headline.com/team/romero-rodrigues" target="_blank" rel="noopener">Romero Rodrigues</a></h3>
+        <p class="title">Managing Partner · Fintech, Applications</p>
+        <p>Leads Headline in Latin America and XP's venture capital strategy. Co-founded Buscapé in 1998 and led it to its US$ 374 million sale to Naspers. Backed more than 90 startups, nine of them unicorns, and led Headline's investment in Pismo ahead of its US$ 1 billion acquisition by Visa.</p>
+        <div class="links"><a href="https://www.linkedin.com/in/romero/" target="_blank" rel="noopener">LinkedIn</a><a href="mailto:romero@headline.com">Email</a></div>
+      </div>
+      <div class="person">
+        <img src="assets/img/team/gabriel-alves.jpg" alt="Gabriel Alves" width="640" height="640" loading="lazy">
+        <h3><a href="https://headline.com/team/gabriel-alves" target="_blank" rel="noopener">Gabriel Alves</a></h3>
+        <p class="title">Partner</p>
+        <p>Looks for founders with exceptional ambition and execution building category-defining companies in Brazil and beyond. Before Headline, held senior investment banking roles at Evercore, BTG Pactual and XP, after starting out as a corporate and tax lawyer.</p>
+        <div class="links"><a href="https://www.linkedin.com/in/gabriel-alves-71218819/" target="_blank" rel="noopener">LinkedIn</a><a href="mailto:gabriel@headline.com">Email</a></div>
+      </div>
+      <div class="person">
+        <img src="assets/img/team/maria-beatriz-de-orleans-e-braganca.jpg" alt="Maria Beatriz de Orleans e Bragança" width="640" height="640" loading="lazy">
+        <h3><a href="https://headline.com/team/maria-beatriz-de-orleans-e-braganca" target="_blank" rel="noopener">Maria Beatriz de Orleans e Bragança</a></h3>
+        <p class="title">Investor · Fintech, Applications, AI</p>
+        <p>Invests in AI-core startups from Seed to Series B. Previously led investment operations at Bradesco's private equity and venture capital arm and was the first hire at Fuse Capital. Law degree from PUC-Rio and an MBA from IESE.</p>
+        <div class="links"><a href="https://www.linkedin.com/in/maria-beatriz-de-orleans-e-bragan%C3%A7a-024242116/" target="_blank" rel="noopener">LinkedIn</a><a href="mailto:beatriz@headline.com">Email</a></div>
+      </div>
+      <div class="person">
+        <img src="assets/img/team/victor-cintra.jpg" alt="Victor Cintra" width="640" height="640" loading="lazy">
+        <h3><a href="https://headline.com/team/victor-cintra" target="_blank" rel="noopener">Victor Cintra</a></h3>
+        <p class="title">Investor · Fintech, SaaS, Insurtech</p>
+        <p>Backs founders with ambitious ideas and the drive to execute them. Before Headline, was an early employee at a delivery startup, working across finance, operations, sales, product and fundraising.</p>
+        <div class="links"><a href="https://www.linkedin.com/in/victor-toledo-soares-cintra-924a11181/" target="_blank" rel="noopener">LinkedIn</a><a href="mailto:victor@headline.com">Email</a></div>
+      </div>
+      <div class="person">
+        <img src="assets/img/team/daniela-carneiro.jpg" alt="Daniela Carneiro" width="640" height="640" loading="lazy">
+        <h3><a href="https://headline.com/team/daniela-carneiro" target="_blank" rel="noopener">Daniela Carneiro</a></h3>
+        <p class="title">Investor · Healthcare, Infrastructure</p>
+        <p>Industrial engineer turned investor, drawn to the messiest, most complex problems. Worked on process optimization inside startups and strategic design in consulting before joining the Brazil investment team.</p>
+        <div class="links"><a href="https://www.linkedin.com/in/paula-daniela-carneiro-6724aa17b" target="_blank" rel="noopener">LinkedIn</a><a href="mailto:daniela@headline.com">Email</a></div>
+      </div>
+      <div class="person">
+        <img src="assets/img/team/pietro-caiafa.jpg" alt="Pietro Caiafa" width="640" height="640" loading="lazy">
+        <h3><a href="https://headline.com/team/pietro-caiafa" target="_blank" rel="noopener">Pietro Caiafa</a></h3>
+        <p class="title">Investor · Fintech, Infrastructure</p>
+        <p>Invests in fintech, SaaS, infrastructure, agtech, edtech, e-commerce and sport. Ran an e-commerce business and co-founded Link Finance, the financial markets community at Link School of Business.</p>
+        <div class="links"><a href="https://www.linkedin.com/in/pietrocaiafa/" target="_blank" rel="noopener">LinkedIn</a><a href="mailto:pietro@headline.com">Email</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Projects from the local team.</h2>
+      <p class="lede">Things we build and write for founders in the region, beyond the checks.</p>
+    </div>
+    <div class="projects">
+      <a class="project" href="https://getuncapped.co" target="_blank" rel="noopener">
+        <span class="tag">Tool · Free</span>
+        <h3>Uncapped</h3>
+        <p>An open, free cap table for founders and finance teams. Model rounds, options and dilution without handing your data to a vendor. Your data, your control.</p>
+        <span class="go ext">getuncapped.co</span>
+      </a>
+      <a class="project light" href="https://romerorodrigues.substack.com/" target="_blank" rel="noopener">
+        <span class="tag">Writing</span>
+        <h3>Ideas, by Romero Rodrigues</h3>
+        <p>Essays on the future, AI, startups, strategy, business models and first principles, written from nearly three decades on both sides of the table.</p>
+        <span class="go ext">Read on Substack</span>
+      </a>
+      <a class="project light" href="https://headline.com" target="_blank" rel="noopener">
+        <span class="tag">Newsletter</span>
+        <h3>Headline updates, LatAm edition</h3>
+        <p>Occasional notes on companies, perspectives and the world, with a Latin America edition. Subscribe on the global site and pick the LatAm region.</p>
+        <span class="go ext">Subscribe on headline.com</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact">
+    <div>
+      <p class="eyebrow">Contact</p>
+      <h2 style="margin-top:14px">Building in Latin America? Talk to us.</h2>
+      <p class="lede" style="margin-top:20px">Send a short note and your deck to any investor on the team, or to Romero directly. We read everything, and we answer.</p>
+      <div class="ctas" style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn btn-solid" href="mailto:romero@headline.com?subject=Pitch%20for%20Headline%20Latam">Send your deck</a>
+        <a class="btn btn-ghost ext" href="https://www.linkedin.com/company/headlinevc" target="_blank" rel="noopener">Headline on LinkedIn</a>
+      </div>
+    </div>
+    <div class="addr">
+      <div class="block">
+        <div class="lbl">São Paulo office</div>
+        <p>Av. Chedid Jafet, 75, 29º andar<br>Vila Olímpia, São Paulo, SP, Brazil</p>
+      </div>
+      <div class="block">
+        <div class="lbl">Press and partnerships</div>
+        <p><a href="mailto:romero@headline.com">romero@headline.com</a></p>
+      </div>
+      <div class="block">
+        <div class="lbl">Headline worldwide</div>
+        <p class="offices"><b>São Paulo</b><span>San Francisco</span><span>Berlin</span><span>Paris</span><span>London</span><span>Hamburg</span><span>Luxembourg</span><span>Taipei</span><span>Tokyo</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="brand" href="#top" aria-label="Headline Latam"><img src="assets/img/logos/headline-brasil.webp" alt="Headline" width="449" height="88"><span class="latam">Latam</span></a>
+      <p style="margin-top:12px;max-width:52ch">Headline Latam is the Latin America annex of <a href="https://headline.com" style="color:var(--ink);border-bottom:1.5px solid var(--ink)">headline.com</a>, the global venture capital firm. It is maintained by the São Paulo team.</p>
+    </div>
+    <nav>
+      <a href="https://headline.com" target="_blank" rel="noopener">headline.com</a>
+      <a href="https://headline.com/portfolio" target="_blank" rel="noopener">Global portfolio</a>
+      <a href="https://headline.com/team" target="_blank" rel="noopener">Global team</a>
+      <a href="https://headline.com/about" target="_blank" rel="noopener">About Headline</a>
+      <a href="https://headline.com/privacy-policy" target="_blank" rel="noopener">Privacy policy</a>
+    </nav>
+    <div class="legal">
+      <span>© 2026 Headline. All rights reserved.</span>
+      <span>Headline Brazil III is co-managed with XP Vista Asset Management. Nothing on this page is an offer of securities.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleNav(){
+    var n=document.getElementById('nav'),b=n.querySelector('.burger');
+    var open=n.classList.toggle('open');b.setAttribute('aria-expanded',open);
+  }
+  document.querySelectorAll('.menu a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('nav').classList.remove('open')})});
+  document.querySelectorAll('.filters button').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      document.querySelectorAll('.filters button').forEach(function(b){b.setAttribute('aria-pressed','false')});
+      btn.setAttribute('aria-pressed','true');
+      var f=btn.dataset.filter;
+      document.querySelectorAll('#grid .co').forEach(function(c){
+        c.classList.toggle('hidden', f!=='all' && !c.classList.contains(f));
+      });
+    });
+  });
+  function toggleNews(){
+    var l=document.getElementById('newslist'),b=document.getElementById('morenews');
+    var x=l.classList.toggle('expanded');b.textContent=x?'Show fewer':'Show earlier news';
+  }
+</script>
+</body>
+</html>

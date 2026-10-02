@@ -37,6 +37,12 @@ aws s3 sync "$SOURCE_DIR" "s3://$S3_BUCKET/" \
     --exclude ".env*" \
     --exclude "*.md"
 
+# HTML com cache curto, para atualizações chegarem ao navegador
+aws s3 cp index.html "s3://$S3_BUCKET/index.html" \
+    --profile "$AWS_PROFILE" \
+    --content-type "text/html; charset=utf-8" \
+    --cache-control "max-age=300,public"
+
 echo -e "${GREEN}✓ Upload concluído${NC}"
 
 # Invalida cache do CloudFront
