@@ -6,13 +6,15 @@ Auditoria de 2 de outubro de 2026. Escopo: a home (página única), infraestrutu
 
 A base técnica agora está sólida: HTML estático, rápido, com dados estruturados, sitemap, robots, canonical único e CDN com compressão. O maior limite de ranqueamento não é técnico, é de **escopo**: o site é uma página única, em inglês, sobre um público que busca majoritariamente em português. As três alavancas de maior impacto são:
 
-1. **Versão em português** (`/pt/`) com `hreflang`. Fundadores e os ~12.500 cotistas do Headline XP FIP buscam em PT.
+1. **Versão em português**: feita em 4 de outubro de 2026, em `/pt/`, com `hreflang` en/pt-BR/x-default nas duas páginas e no sitemap. Fundadores e os ~12.500 cotistas do Headline XP FIP buscam em PT.
 2. **Links de autoridade**: headline.com (página do escritório de São Paulo), romerorodrigues.com, LinkedIn, Substack, Uncapped e as empresas do portfólio. Domínio novo sem backlinks não ranqueia nem para a marca.
 3. **Páginas próprias para o que só existe aqui**: o fundo Headline XP (informação para cotistas e imprensa) e "como captar com a Headline" (pitch, FAQ).
 
 Diagnóstico geral: **fundação forte, conteúdo raso para buscas não-marca.**
 
 ## O que já foi feito
+
+**Versão em português (4 de outubro de 2026):** `/pt/` é a home traduzida, com o mesmo layout, título e descrição próprios em PT, `og:locale` pt_BR, seletor EN/PT no menu e `hreflang` recíproco. Toda edição de texto agora precisa ser feita nas duas páginas (`index.html` e `pt/index.html`).
 
 | Item | Antes | Agora |
 |---|---|---|
@@ -53,7 +55,6 @@ Diagnóstico geral: **fundação forte, conteúdo raso para buscas não-marca.**
 
 | Página | Problema | Severidade | Correção |
 |---|---|---|---|
-| / | Site só em inglês para público que busca em português | Alta | Criar `/pt/` traduzida com `hreflang` en/pt-BR/x-default |
 | / | Domínio novo, zero backlinks | Alta | Links de headline.com, romerorodrigues.com, LinkedIn da Headline, Substack, Uncapped e portfólio |
 | / | H1 não cita "Brazil" | Baixa | Opcional: "Early-stage venture capital for Brazil and Latin America, with a global wingspan." |
 | / | Seção de notícias só aponta para fora | Média | Resumos próprios por rodada (2 a 3 frases) aumentam texto original indexável |
@@ -83,7 +84,6 @@ Diagnóstico geral: **fundação forte, conteúdo raso para buscas não-marca.**
 
 | Tópico | Por que importa | Formato | Prioridade | Esforço |
 |---|---|---|---|---|
-| Versão PT do site | Público principal busca em PT | `/pt/` espelhando a home | Alta | Moderado |
 | Headline XP FIP | ~12.500 cotistas e imprensa buscam o fundo por nome | Página do fundo (estrutura, gestão, portfólio, contato XP) | Alta | Moderado, **exige revisão de compliance (CVM/XP Asset)** |
 | Como captar com a Headline | Fundadores querem tese, estágio, cheque e processo | Página com FAQ e marcação FAQPage | Alta | Rápido |
 | Notícias do portfólio | Conteúdo fresco, links de veículos | Uma página por rodada, com resumo próprio | Média | Contínuo |
@@ -104,7 +104,7 @@ Diagnóstico geral: **fundação forte, conteúdo raso para buscas não-marca.**
 | Duplicação S3/CloudFront | Passa | Bucket privado; preview com `noindex` |
 | Imagens | Aviso | Fotos da equipe em JPG |
 | Fontes | Aviso | Google Fonts bloqueante |
-| hreflang | Falha | Não há versão PT ainda |
+| hreflang | Passa | `/` (en) e `/pt/` (pt-BR), x-default no inglês, nas páginas e no sitemap |
 | Backlinks | Falha | Domínio novo |
 
 ## Concorrência (sinais qualitativos)
@@ -129,7 +129,6 @@ Diagnóstico geral: **fundação forte, conteúdo raso para buscas não-marca.**
 
 **Este trimestre**
 
-- `/pt/` com `hreflang`. Impacto alto, meio dia (posso fazer).
 - Página do Headline XP FIP. Impacto alto, meio dia mais revisão de compliance.
 - `/pt/pitch/` com FAQ estruturado. Impacto médio, 2 horas.
 - Uma página por rodada relevante do portfólio, em PT, com resumo próprio e link para a matéria. Impacto médio, contínuo.
