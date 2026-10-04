@@ -16,7 +16,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://headlinelatam.com/pt/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://headlinelatam.com/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://headlinelatam.com/"/>
-    <image:image><image:loc>https://headlinelatam.com/assets/img/og.png</image:loc></image:image>
+    <image:image><image:loc>https://headlinelatam.com/assets/img/og-pt.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://headlinelatam.com/es/</loc>
@@ -25,6 +25,6 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://headlinelatam.com/pt/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://headlinelatam.com/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://headlinelatam.com/"/>
-    <image:image><image:loc>https://headlinelatam.com/assets/img/og.png</image:loc></image:image>
+    <image:image><image:loc>https://headlinelatam.com/assets/img/og-es.png</image:loc></image:image>
   </url>
 </urlset>

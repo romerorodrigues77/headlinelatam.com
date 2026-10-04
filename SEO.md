@@ -1,137 +1,124 @@
 # SEO, headlinelatam.com
 
-Auditoria de 2 de outubro de 2026. Escopo: a home (página única), infraestrutura AWS, medição e indexação. Sem ferramenta de SEO conectada (Ahrefs/Semrush), então volume e dificuldade abaixo são estimativas qualitativas a partir do SERP e da imprensa.
+Revisão de 4 de outubro de 2026, com o site em três idiomas. Substitui a auditoria de 2 de outubro. Sem ferramenta de SEO conectada (Ahrefs/Semrush), então volume e dificuldade são estimativas qualitativas.
 
 ## Resumo
 
-A base técnica agora está sólida: HTML estático, rápido, com dados estruturados, sitemap, robots, canonical único e CDN com compressão. O maior limite de ranqueamento não é técnico, é de **escopo**: o site é uma página única, em inglês, sobre um público que busca majoritariamente em português. As três alavancas de maior impacto são:
+O site está tecnicamente redondo nas três versões: hreflang recíproco, canonicals próprios, sitemap com alternates, dados estruturados, HTTPS, CDN com Brotli e 100 em SEO e Práticas no PageSpeed. A home em inglês já está indexada; `/pt/` e `/es/` foram enviadas para a fila prioritária de rastreamento hoje.
 
-1. **Versão em português**: feita em 4 de outubro de 2026, em `/pt/`, com `hreflang` en/pt-BR/x-default nas duas páginas e no sitemap. Fundadores e os ~12.500 cotistas do Headline XP FIP buscam em PT.
-2. **Links de autoridade**: headline.com (página do escritório de São Paulo), romerorodrigues.com, LinkedIn, Substack, Uncapped e as empresas do portfólio. Domínio novo sem backlinks não ranqueia nem para a marca.
-3. **Páginas próprias para o que só existe aqui**: o fundo Headline XP (informação para cotistas e imprensa) e "como captar com a Headline" (pitch, FAQ).
+O limite agora é **autoridade e profundidade**, não técnica:
 
-Diagnóstico geral: **fundação forte, conteúdo raso para buscas não-marca.**
+1. **Backlinks.** Domínio de 2 dias, sem links. Prioridade: headline.com (página de São Paulo), romerorodrigues.com, LinkedIn da Headline, Substack, Uncapped e sites do portfólio.
+2. **Uma página por intenção.** Hoje são três cópias da mesma home. As buscas não-marca com chance real pedem páginas próprias: Headline XP FIP (cotistas), "como captar" (fundadores), notícias do portfólio.
+3. **Esperar e medir.** Indexação de PT/ES leva de dias a algumas semanas; os relatórios do Search Console começam a encher em ~48 h.
 
-## O que já foi feito
+## Estado por versão
 
-**Versão em português (4 de outubro de 2026):** `/pt/` é a home traduzida, com o mesmo layout, título e descrição próprios em PT, `og:locale` pt_BR, seletor EN/PT no menu e `hreflang` recíproco. Toda edição de texto agora precisa ser feita em todas as versões.
+| | `/` (en) | `/pt/` (pt-BR) | `/es/` (es) |
+|---|---|---|---|
+| `<html lang>` | en | pt-BR | es-419 |
+| hreflang | en, pt-BR, es, x-default | idem | idem |
+| Canonical | `/` | `/pt/` | `/es/` |
+| `og:locale` | en_US (+pt_BR, es_LA) | pt_BR (+en_US, es_LA) | es_LA (+en_US, pt_BR) |
+| Imagem de compartilhamento | `og.png` | `og-pt.png` (nova) | `og-es.png` (nova) |
+| `content_group` no GA4 | en | pt | es |
+| Google | Indexada | Fila prioritária (4/out) | Fila prioritária (4/out) |
 
-**Versão em espanhol (4 de outubro de 2026):** `/es/`, em espanhol latino-americano neutro (vocabulário pan-regional: "inversionistas", "portafolio"; tratamento por "tú"; valores em milhões, "US$ 1.000 M"). `lang="es-419"` na página e `hreflang="es"` (o Google não aceita o código regional 419), `og:locale` es_LA. As três páginas (`index.html`, `pt/index.html`, `es/index.html`) se referenciam por `hreflang`, inclusive no sitemap, com x-default no inglês.
+Decisões de idioma: espanhol latino-americano neutro ("inversionistas", "portafolio", "tú", valores em milhões). `hreflang="es"` porque o Google não aceita o código regional `419`. x-default no inglês. Sem redirecionamento automático por idioma do navegador (o Google recomenda deixar a escolha com o visitante; há seletor no menu).
+
+## O que mudou nesta revisão
 
 | Item | Antes | Agora |
 |---|---|---|
-| `<title>` | "Headline Latam" (14 caracteres, sem palavra-chave) | "Headline Latam \| Venture Capital in Brazil and Latin America" (60) |
-| Meta description | Descritiva, sem "venture capital"/"Seed to Series B" | 149 caracteres, com estágio, região e CTA |
-| Favicon | Só data-URI SVG (Google não exibe no resultado) | `/favicon.ico`, `/favicon.svg`, `apple-touch-icon`, manifest |
-| Open Graph / Twitter | Sem site_name, dimensões, alt, twitter:* | Completo |
-| Dados estruturados | Organization simples, `sameAs` apontando para o pai | `@graph` com Organization (logo 512px, endereço, área, `parentOrganization`, 6 `employee` com LinkedIn), WebSite e WebPage |
-| Links quebrados | 6 cards do portfólio com `href="#"` abrindo a própria página em nova aba | Viraram cards sem link |
-| robots.txt / sitemap.xml | Não existiam | Criados; sitemap com imagem OG |
-| llms.txt | Não existia | Resumo factual para motores de resposta (ChatGPT, Perplexity) |
-| 404 | S3 devolvia XML 403 | `404.html` com status 404 real e `noindex` |
-| Domínio canônico | Nada impedia www, `index.html` e `*.cloudfront.net` duplicados | CloudFront Function: www → apex (301), `/index.html` → `/` (301); `X-Robots-Tag: noindex` no host cloudfront.net |
-| Conteúdo duplicado via S3 | Bucket público acessível direto | Bucket privado, só o CloudFront lê (OAC) |
-| Compressão | Desligada (53,7 KB de HTML cru) | Brotli/gzip ligados |
-| HTTP | HTTP/2 | HTTP/2 + HTTP/3 |
-| Segurança | Sem cabeçalhos | HSTS, nosniff, X-Frame-Options, Referrer-Policy |
-| Cache | robots/sitemap herdariam 1 ano | HTML, XML, TXT e manifest com 5 min |
-| Analytics | Nenhum | GA4 `G-0B661FMB74` com Consent Mode v2 e banner de cookies |
-| Conversões | Nenhuma | Evento `generate_lead` em todo clique de e-mail (deck, imprensa, equipe), com seção de origem |
+| Imagem OG em PT/ES | Texto em inglês em links compartilhados | `og-pt.png` e `og-es.png` no mesmo layout; também no sitemap e no JSON-LD |
+| Espanhol | Só "venture capital" | "capital de riesgo" na description e no texto de abertura (termo com mais busca em espanhol) |
+| Contraste | Cinza `#797979` sobre o fundo: 3,9:1 (reprova WCAG AA) | `#6b6b6b`: 4,8:1 |
+| Links da equipe | 6 "LinkedIn" e 6 "E-mail" com o mesmo texto e destinos diferentes | `aria-label` por pessoa, no idioma da página |
+| Fontes | CSS do Google Fonts bloqueava a renderização (~1,9 s estimado no 4G lento) | Carregamento assíncrono (`preload` + `onload`), com `noscript` |
+| GA4 | Sem segmentação por idioma | `content_group` en/pt/es (relatório "Grupo de conteúdo", sem dimensão personalizada) |
+| Search Console | Domínio não verificado; sitemap lido antes de PT/ES | Domínio verificado por TXT; sitemap reenviado; indexação solicitada para `/`, `/pt/`, `/es/` |
+| GA × Search Console | Não vinculados | Vinculados (propriedade de Domínio), coleção "Search Console" publicada no GA |
+| `generate_lead` | Evento comum | Evento principal (conversão) |
 
-### Google Analytics 4
+## Search Console
 
-- Conta **Headline Latam** (410481438), propriedade **headlinelatam.com - GA4** (557110567), fuso São Paulo, BRL, retenção de dados 14 meses.
-- Fluxo Web `https://headlinelatam.com`, ID de medição `G-0B661FMB74`, métricas otimizadas ligadas (rolagem, cliques de saída nos logos e notícias, etc.).
-- Consent Mode v2: anúncios sempre negados; analytics negado por padrão no EEE/Reino Unido/Suíça (GDPR) e permitido no resto (LGPD com aviso e opção de recusa). O banner guarda a escolha e o rodapé tem "Cookie settings".
-- **Pendente (manual, 10 s):** depois do primeiro clique real em um e-mail do site, em Admin → Eventos, marque a estrela de `generate_lead` para virar evento principal.
-- Recomendado: em Admin → Vínculos de produtos, vincular o Search Console; adicionar outro admin (ex. conta Headline) em Gerenciamento de acesso.
+- **Propriedades:** Domínio `headlinelatam.com` (verificada por TXT no Route 53, cobre www/http/subdomínios) e prefixo `https://headlinelatam.com/` (verificada pelo GA; não remova a tag gtag). Use a de Domínio no dia a dia.
+- **TXT de verificação:** no apex da zona `Z0269845L2AK7KOYU2TT`, no mesmo registro do SPF `v=spf1 -all`. Não apague; é ele que mantém a verificação.
+- **Sitemap:** `https://headlinelatam.com/sitemap.xml`, 3 URLs, cada uma com 4 alternates `xhtml:link` e imagem. Reenviado em 4/out; a última leitura (4/out, antes das versões novas) achou 1 página e a próxima deve achar 3.
+- **Indexação:** `/` indexada, HTTPS válido. `/pt/` e `/es/` "O Google não reconhece o URL" até o rastreamento; indexação solicitada. O relatório "Páginas" ainda está em processamento (propriedade nova).
+- **Segmentação internacional:** o relatório antigo foi descontinuado pelo Google; o hreflang é o sinal. Conferir em ~1 semana se `/pt/` e `/es/` aparecem com canonical próprio (Inspeção de URL → "URL canônico selecionado pelo Google").
 
-### Google Search Console
+## Google Analytics 4
 
-- Propriedade **prefixo de URL** `https://headlinelatam.com/` verificada automaticamente pelo Google Analytics (não remova a tag gtag do `<head>`, ela é o método de verificação).
-- `sitemap.xml` enviado em 2 de outubro de 2026. O primeiro status foi "Não foi possível buscar", normal nas horas seguintes à troca de nameservers; o Google tenta de novo sozinho. Se continuar assim depois de 48 h, reenvie.
-- Propriedade **Domínio** `headlinelatam.com` criada mas ainda **não verificada**. Ela cobre www, http e subdomínios, e é a melhor prática. Para concluir: Search Console → headlinelatam.com → Verificar → em "Instruções para" escolha **Qualquer provedor de DNS**, copie o `google-site-verification=...` e adicione como TXT no apex da zona Route 53 `Z0269845L2AK7KOYU2TT`.
-- Pendente (um clique): Inspeção de URL → `https://headlinelatam.com/` → **Solicitar indexação**.
+- Conta Headline Latam (410481438), propriedade 557110567, `G-0B661FMB74`, fuso São Paulo, BRL, retenção 14 meses.
+- **Dados até 3/out:** 58 visualizações, 38 usuários, 46 sessões; 26 `generate_lead` de apenas 2 usuários, quase certamente testes internos.
+- **Idioma:** `content_group` = en/pt/es em cada página. Em Relatórios → Engajamento → Páginas e telas, troque a dimensão para "Grupo de conteúdo". Começa a contar a partir do deploy desta revisão.
+- **Conversão:** `generate_lead` é evento principal. Os eventos principais `close_convert_lead`, `qualify_lead` e `purchase` foram criados automaticamente pelo objetivo "Gerar leads" e não são disparados pelo site; podem ser ignorados.
+- **Search Console no GA:** vinculado; relatórios em Relatórios → Search Console (dados em ~48 h).
+- **Recomendado:** filtro de tráfego interno (Admin → Fluxos de dados → Configurar tag → Definir tráfego interno) com o IP do escritório, para os testes do time não inflarem leads; adicionar um segundo administrador.
 
-## Problemas na página
+## PageSpeed (celular, `/pt/`, antes desta revisão)
 
-| Página | Problema | Severidade | Correção |
+| Desempenho | Acessibilidade | Práticas | SEO |
 |---|---|---|---|
-| / | Domínio novo, zero backlinks | Alta | Links de headline.com, romerorodrigues.com, LinkedIn da Headline, Substack, Uncapped e portfólio |
-| / | H1 não cita "Brazil" | Baixa | Opcional: "Early-stage venture capital for Brazil and Latin America, with a global wingspan." |
-| / | Seção de notícias só aponta para fora | Média | Resumos próprios por rodada (2 a 3 frases) aumentam texto original indexável |
-| / | Fotos da equipe em JPG (25 a 56 KB cada) | Baixa | Converter para WebP (cwebp já instalado) |
-| / | Fontes do Google bloqueiam renderização | Baixa | Auto-hospedar Manrope/Fraunces em WebFont com `preload` |
+| 90 | 96 | 100 | 100 |
 
-## Palavras-chave
+LCP 2,9 s, CLS 0,018, TBT 20 ms. Os dois pontos que tiravam nota (fontes bloqueantes e contraste) foram corrigidos nesta revisão; rodar de novo após o deploy. Restante: imagens (~11 KiB em WebP para as fotos da equipe).
 
-| Palavra-chave | Dificuldade | Oportunidade | Posição atual | Intenção | Conteúdo recomendado |
+## Palavras-chave por idioma
+
+| Idioma | Palavra-chave | Dificuldade | Oportunidade | Página hoje | Próximo passo |
 |---|---|---|---|---|---|
-| headline latam / headline brasil | Fácil | Alta | Fora (domínio recém-publicado) | Navegacional | Home (já otimizada) |
-| headline xp fip | Fácil | Alta | Fora | Navegacional/informacional | Página `/pt/fundos/headline-xp/` |
-| fundo headline xp rentabilidade / cotas | Fácil | Alta | Fora | Informacional (cotistas) | Mesma página, com link para XP Asset |
-| romero rodrigues headline | Fácil | Média | Fora (headline.com e imprensa ranqueiam) | Navegacional | Bio + link para romerorodrigues.com |
-| como captar investimento com a headline | Fácil | Alta | Fora | Transacional | `/pt/pitch/` com FAQ (FAQPage) |
-| venture capital são paulo | Difícil | Média | Fora | Comercial/local | Perfil da Empresa no Google + home PT |
-| fundo de venture capital brasil | Difícil | Média | Fora | Comercial | Home PT + páginas de fundo |
-| investimento seed brasil / série A brasil | Moderada | Média | Fora | Comercial | `/pt/pitch/` + artigos |
-| early stage venture capital latin america | Difícil | Média | Fora | Comercial | Home EN |
-| fundo de vc para pessoa física | Moderada | Média | Fora | Informacional | Artigo sobre o modelo Headline XP (revisar com compliance) |
-| redpoint eventures | Fácil | Média | Fora | Navegacional (histórico) | Página de história dos fundos |
-| cap table grátis | Moderada | Média | Fora | Transacional | Uncapped (já linkado) |
-| pismo visa headline | Fácil | Baixa | Fora | Informacional | Case curto em `/pt/` |
-| startups headline portfólio brasil | Fácil | Média | Fora | Navegacional | Seção de portfólio na versão PT |
-
-## Lacunas de conteúdo
-
-| Tópico | Por que importa | Formato | Prioridade | Esforço |
-|---|---|---|---|---|
-| Headline XP FIP | ~12.500 cotistas e imprensa buscam o fundo por nome | Página do fundo (estrutura, gestão, portfólio, contato XP) | Alta | Moderado, **exige revisão de compliance (CVM/XP Asset)** |
-| Como captar com a Headline | Fundadores querem tese, estágio, cheque e processo | Página com FAQ e marcação FAQPage | Alta | Rápido |
-| Notícias do portfólio | Conteúdo fresco, links de veículos | Uma página por rodada, com resumo próprio | Média | Contínuo |
-| História: Redpoint eventures → Headline | Buscas de marca histórica | Página/linha do tempo | Baixa | Rápido |
+| PT | headline brasil / headline latam | Fácil | Alta | `/pt/` | Backlinks de marca |
+| PT | headline xp fip / fundo headline xp | Fácil | Alta | `/pt/` (seção Fundos) | Página `/pt/fundos/headline-xp/` (com compliance XP Asset) |
+| PT | como captar investimento com a headline | Fácil | Alta | `/pt/#contact` | `/pt/pitch/` com FAQ |
+| PT | venture capital são paulo | Difícil | Média | `/pt/` | Perfil da Empresa no Google |
+| PT | fundo de venture capital brasil | Difícil | Média | `/pt/` | Backlinks + páginas de fundo |
+| ES | capital de riesgo brasil / venture capital brasil | Moderada | Alta | `/es/` | Backlinks de mídia regional (Contxto, LAVCA) |
+| ES | fondos de venture capital américa latina | Difícil | Média | `/es/` | Listas de fundos (LAVCA, Crunchbase) apontando para `/es/` |
+| ES | invertir en startups latinoamérica / levantar capital startup | Moderada | Média | `/es/` | `/es/pitch/` com FAQ |
+| ES | headline latam | Fácil | Alta | `/es/` | Marca |
+| EN | headline latam / headline brazil | Fácil | Alta | `/` | Marca |
+| EN | early stage venture capital latin america | Difícil | Média | `/` | Backlinks + conteúdo |
+| EN | pismo visa headline | Fácil | Baixa | `/` | Case curto |
 
 ## Checklist técnico
 
 | Verificação | Status | Detalhe |
 |---|---|---|
-| HTTPS | Passa | Certificado ACM para apex e www, TLS 1.2+ |
-| Canonical único | Passa | apex; www e `/index.html` redirecionam 301 |
+| hreflang recíproco e autorreferente | Passa | 3 páginas + sitemap, x-default no inglês |
+| Canonical | Passa | Um por página; www, http e `/index.html` redirecionam 301 |
+| Sitemap | Passa | 3 URLs com alternates; enviado nas duas propriedades |
 | robots.txt | Passa | Tudo liberado, inclusive crawlers de IA |
-| sitemap.xml | Passa | Enviado no Search Console |
-| Dados estruturados | Passa | Organization, WebSite, WebPage; validar no Rich Results Test após publicar |
-| Mobile | Passa | Viewport, layout fluido |
-| Compressão | Passa | Brotli |
-| Página 404 | Passa | Status 404, `noindex` |
-| Duplicação S3/CloudFront | Passa | Bucket privado; preview com `noindex` |
-| Imagens | Aviso | Fotos da equipe em JPG |
-| Fontes | Aviso | Google Fonts bloqueante |
-| hreflang | Passa | `/` (en), `/pt/` (pt-BR) e `/es/` (es), x-default no inglês, nas páginas e no sitemap |
+| Dados estruturados | Passa | Organization, WebSite (3 idiomas), WebPage por idioma |
+| HTTPS / HSTS | Passa | ACM, TLS 1.2+ |
+| Mobile | Passa | Sem rolagem horizontal; menu hambúrguer abaixo de 1060px |
+| Contraste (WCAG AA) | Passa (após deploy) | `#6b6b6b` |
+| Fontes | Passa (após deploy) | Assíncronas |
+| Imagens OG por idioma | Passa (após deploy) | |
+| Imagens da equipe | Aviso | JPG; WebP economizaria pouco |
 | Backlinks | Falha | Domínio novo |
-
-## Concorrência (sinais qualitativos)
-
-| Dimensão | headlinelatam.com | headline.com | Fundos locais (ex. Bossanova, Canary, Kaszek) | Vencedor |
-|---|---|---|---|---|
-| Palavras-chave | ~0 (recém-publicado) | Marca global | Marca + termos de VC em PT | Locais |
-| Profundidade de conteúdo | 1 página | Portfólio, equipe, artigos | Portfólio, blog, materiais para fundadores | headline.com |
-| Frequência de publicação | Nenhuma | Regular | Regular | Concorrentes |
-| Backlinks | Nenhum | Altos | Médios/altos | headline.com |
-| Técnica | Excelente | Boa | Variável | headlinelatam.com |
-| Recursos de SERP | Nenhum | Painel de conhecimento | Painel em alguns | headline.com |
+| Conteúdo não-marca | Falha | Só a home, em 3 idiomas |
 
 ## Plano de ação
 
 **Esta semana**
 
-- Search Console: solicitar indexação da home e verificar a propriedade de Domínio (instruções acima). Impacto alto, 5 minutos.
-- Pedir link para headlinelatam.com na página de São Paulo de headline.com e no rodapé de romerorodrigues.com. Impacto alto, 1 hora.
-- Atualizar o site no LinkedIn da Headline Brazil, no Substack e no Uncapped. Impacto médio, 30 minutos.
-- Criar o Perfil da Empresa no Google para o escritório da Av. Chedid Jafet. Impacto médio para "venture capital são paulo", 30 minutos mais verificação por correio ou vídeo.
+- Deploy desta revisão e novo PageSpeed. 10 min.
+- Pedir os links: página de São Paulo em headline.com, rodapé de romerorodrigues.com, site no LinkedIn da Headline Brazil, Substack e Uncapped. Impacto alto, 1 h.
+- Filtro de tráfego interno no GA4. 10 min.
+- Perfil da Empresa no Google para o escritório (Av. Chedid Jafet, 75, 28º andar). Impacto médio para buscas locais. 30 min mais verificação.
+- Em ~7 dias: conferir na Inspeção de URL se `/pt/` e `/es/` foram indexadas com canonical próprio e se o sitemap mostra 3 páginas.
 
 **Este trimestre**
 
-- Página do Headline XP FIP. Impacto alto, meio dia mais revisão de compliance.
-- `/pt/pitch/` com FAQ estruturado. Impacto médio, 2 horas.
-- Uma página por rodada relevante do portfólio, em PT, com resumo próprio e link para a matéria. Impacto médio, contínuo.
-- Auto-hospedar fontes e converter fotos para WebP. Impacto baixo, 1 hora.
+- `/pt/pitch/` e `/es/pitch/` (e `/pitch/`) com FAQ estruturado: tese, estágio, cheque, processo. Impacto alto.
+- Página do Headline XP FIP em PT, com revisão de compliance. Impacto alto para cotistas.
+- Notícias do portfólio como páginas próprias, com resumo original em PT/ES e link para a matéria. Impacto médio, contínuo.
+- Perfis em diretórios do setor (LAVCA, Crunchbase, Dealroom, ABVCAP) apontando para a versão no idioma certo.
+
+## Manutenção
+
+- Toda mudança de texto precisa ser feita em `index.html`, `pt/index.html` e `es/index.html`.
+- Ao criar uma página nova, adicionar as três versões ao `sitemap.xml` com os 4 alternates e o hreflang em cada página.
+- `deploy.sh` já dá cache curto para as três páginas, sitemap, robots e llms.txt.
