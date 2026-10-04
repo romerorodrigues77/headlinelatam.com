@@ -14,7 +14,9 @@ Diagnóstico geral: **fundação forte, conteúdo raso para buscas não-marca.**
 
 ## O que já foi feito
 
-**Versão em português (4 de outubro de 2026):** `/pt/` é a home traduzida, com o mesmo layout, título e descrição próprios em PT, `og:locale` pt_BR, seletor EN/PT no menu e `hreflang` recíproco. Toda edição de texto agora precisa ser feita nas duas páginas (`index.html` e `pt/index.html`).
+**Versão em português (4 de outubro de 2026):** `/pt/` é a home traduzida, com o mesmo layout, título e descrição próprios em PT, `og:locale` pt_BR, seletor EN/PT no menu e `hreflang` recíproco. Toda edição de texto agora precisa ser feita em todas as versões.
+
+**Versão em espanhol (4 de outubro de 2026):** `/es/`, em espanhol latino-americano neutro (vocabulário pan-regional: "inversionistas", "portafolio"; tratamento por "tú"; valores em milhões, "US$ 1.000 M"). `lang="es-419"` na página e `hreflang="es"` (o Google não aceita o código regional 419), `og:locale` es_LA. As três páginas (`index.html`, `pt/index.html`, `es/index.html`) se referenciam por `hreflang`, inclusive no sitemap, com x-default no inglês.
 
 | Item | Antes | Agora |
 |---|---|---|
@@ -104,7 +106,7 @@ Diagnóstico geral: **fundação forte, conteúdo raso para buscas não-marca.**
 | Duplicação S3/CloudFront | Passa | Bucket privado; preview com `noindex` |
 | Imagens | Aviso | Fotos da equipe em JPG |
 | Fontes | Aviso | Google Fonts bloqueante |
-| hreflang | Passa | `/` (en) e `/pt/` (pt-BR), x-default no inglês, nas páginas e no sitemap |
+| hreflang | Passa | `/` (en), `/pt/` (pt-BR) e `/es/` (es), x-default no inglês, nas páginas e no sitemap |
 | Backlinks | Falha | Domínio novo |
 
 ## Concorrência (sinais qualitativos)

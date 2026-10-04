@@ -50,6 +50,7 @@ short_cache() { # arquivo content-type
 }
 short_cache index.html "text/html; charset=utf-8"
 short_cache pt/index.html "text/html; charset=utf-8"
+short_cache es/index.html "text/html; charset=utf-8"
 short_cache 404.html "text/html; charset=utf-8"
 short_cache sitemap.xml "application/xml; charset=utf-8"
 short_cache robots.txt "text/plain; charset=utf-8"

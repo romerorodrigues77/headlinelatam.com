@@ -13,6 +13,7 @@
 
 - [Home](https://headlinelatam.com/): funds, Latin America portfolio, press, São Paulo team, projects and contact.
 - [Início, em português](https://headlinelatam.com/pt/): the same page in Brazilian Portuguese.
+- [Inicio, en español](https://headlinelatam.com/es/): the same page in neutral Latin American Spanish.
 
 ## Related
 
