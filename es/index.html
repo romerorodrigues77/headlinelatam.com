@@ -61,7 +61,7 @@
       "image": "https://headlinelatam.com/assets/img/og.png",
       "description": "El equipo de Headline en São Paulo, firma global de venture capital. Invierte desde Seed hasta Serie B en Brasil y América Latina a través de los fondos Headline Brazil, cogestionados con XP Vista Asset Management.",
       "foundingDate": "2012",
-      "email": "romero@headline.com",
+      "email": "all-brasil@headline.com",
       "address": {"@type": "PostalAddress", "streetAddress": "Av. Chedid Jafet, 75, 28º andar, Vila Olímpia", "addressLocality": "São Paulo", "addressRegion": "SP", "addressCountry": "BR"},
       "areaServed": [{"@type": "Country", "name": "Brazil"}, {"@type": "Place", "name": "Latin America"}],
       "knowsAbout": ["Venture capital", "Startup investing", "Seed funding", "Series A", "Series B", "Fintech", "Software", "Artificial intelligence"],
@@ -508,7 +508,7 @@
         <h3><a href="https://headline.com/team/romero-rodrigues" target="_blank" rel="noopener">Romero Rodrigues</a></h3>
         <p class="title">Managing Partner · Fintech, Aplicaciones</p>
         <p>Lidera Headline en América Latina y la estrategia de venture capital de XP. Cofundó Buscapé en 1998 y la llevó hasta su venta a Naspers por US$ 374 millones. Ha invertido en más de 90 startups, nueve de ellas unicornios, y lideró la inversión de Headline en Pismo antes de su adquisición por Visa por mil millones de dólares.</p>
-        <div class="links"><a href="https://romerorodrigues.com/en" target="_blank" rel="noopener" aria-label="Sitio web personal de Romero Rodrigues">Sitio web</a><a href="https://www.linkedin.com/in/romero/" target="_blank" rel="noopener" aria-label="LinkedIn de Romero Rodrigues">LinkedIn</a><a href="mailto:romero@headline.com" aria-label="Correo de Romero Rodrigues">Correo</a></div>
+        <div class="links"><a href="https://romerorodrigues.com/en" target="_blank" rel="noopener" aria-label="Sitio web personal de Romero Rodrigues">Sitio web</a><a href="https://www.linkedin.com/in/romero/" target="_blank" rel="noopener" aria-label="LinkedIn de Romero Rodrigues">LinkedIn</a></div>
       </div>
       <div class="person">
         <img src="/assets/img/team/gabriel-alves.jpg" alt="Gabriel Alves" width="640" height="640" loading="lazy">
@@ -583,9 +583,9 @@
     <div>
       <p class="eyebrow">Contacto</p>
       <h2 style="margin-top:14px">¿Construyes en América Latina? Hablemos.</h2>
-      <p class="lede" style="margin-top:20px">Envía una nota breve y tu deck a cualquier inversionista del equipo, o directamente a Romero. Leemos todo, y respondemos.</p>
+      <p class="lede" style="margin-top:20px">Envía tu pitch a través del formulario de Headline y elige Latin America como región. Llega al equipo de São Paulo. Leemos todo, y respondemos.</p>
       <div class="ctas" style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap">
-        <a class="btn btn-solid" href="mailto:romero@headline.com?subject=Pitch%20para%20Headline%20Latam">Envía tu deck</a>
+        <a class="btn btn-solid ext" href="https://forms.headline.com/intros-and-ideas" target="_blank" rel="noopener">Envía tu pitch</a>
         <a class="btn btn-ghost ext" href="https://www.linkedin.com/company/headlinevc" target="_blank" rel="noopener">Headline en LinkedIn</a>
       </div>
     </div>
@@ -595,8 +595,8 @@
         <p>Av. Chedid Jafet, 75, 28º andar<br>Vila Olímpia, São Paulo, SP, Brasil</p>
       </div>
       <div class="block">
-        <div class="lbl">Prensa y alianzas</div>
-        <p><a href="mailto:romero@headline.com">romero@headline.com</a></p>
+        <div class="lbl">Alianzas y contacto</div>
+        <p><a href="mailto:all-brasil@headline.com">all-brasil@headline.com</a></p>
       </div>
       <div class="block">
         <div class="lbl">Headline en el mundo</div>
@@ -642,12 +642,12 @@
     document.getElementById('consent').hidden=true;
   }
   try{if(!localStorage.getItem('hl-consent'))showConsent()}catch(e){showConsent()}
-  // Email clicks are the site's conversions: pitch decks, press, team contacts
+  // Email and pitch-form clicks are the site's conversions
   document.addEventListener('click',function(e){
-    var a=e.target.closest('a[href^="mailto:"]');
+    var a=e.target.closest('a[href^="mailto:"],a[href^="https://forms.headline.com/"]');
     if(!a)return;
-    var sec=a.closest('section');
-    gtag('event','generate_lead',{method:'email',contact:a.getAttribute('href').slice(7).split('?')[0],link_location:sec&&sec.id?sec.id:'footer'});
+    var sec=a.closest('section'),h=a.getAttribute('href'),mail=h.indexOf('mailto:')===0;
+    gtag('event','generate_lead',{method:mail?'email':'pitch_form',contact:mail?h.slice(7).split('?')[0]:h,link_location:sec&&sec.id?sec.id:'footer'});
   });
   function toggleNav(){
     var n=document.getElementById('nav'),b=n.querySelector('.burger');

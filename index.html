@@ -61,7 +61,7 @@
       "image": "https://headlinelatam.com/assets/img/og.png",
       "description": "The São Paulo team of Headline, a global venture capital firm. Invests from Seed to Series B in Brazil and Latin America through the Headline Brazil funds, co-managed with XP Vista Asset Management.",
       "foundingDate": "2012",
-      "email": "romero@headline.com",
+      "email": "all-brasil@headline.com",
       "address": {"@type": "PostalAddress", "streetAddress": "Av. Chedid Jafet, 75, 28º andar, Vila Olímpia", "addressLocality": "São Paulo", "addressRegion": "SP", "addressCountry": "BR"},
       "areaServed": [{"@type": "Country", "name": "Brazil"}, {"@type": "Place", "name": "Latin America"}],
       "knowsAbout": ["Venture capital", "Startup investing", "Seed funding", "Series A", "Series B", "Fintech", "Software", "Artificial intelligence"],
@@ -508,7 +508,7 @@
         <h3><a href="https://headline.com/team/romero-rodrigues" target="_blank" rel="noopener">Romero Rodrigues</a></h3>
         <p class="title">Managing Partner · Fintech, Applications</p>
         <p>Leads Headline in Latin America and XP's venture capital strategy. Co-founded Buscapé in 1998 and led it to its US$ 374 million sale to Naspers. Backed more than 90 startups, nine of them unicorns, and led Headline's investment in Pismo ahead of its US$ 1 billion acquisition by Visa.</p>
-        <div class="links"><a href="https://romerorodrigues.com/en" target="_blank" rel="noopener" aria-label="Romero Rodrigues’s personal website">Website</a><a href="https://www.linkedin.com/in/romero/" target="_blank" rel="noopener" aria-label="Romero Rodrigues on LinkedIn">LinkedIn</a><a href="mailto:romero@headline.com" aria-label="Email Romero Rodrigues">Email</a></div>
+        <div class="links"><a href="https://romerorodrigues.com/en" target="_blank" rel="noopener" aria-label="Romero Rodrigues’s personal website">Website</a><a href="https://www.linkedin.com/in/romero/" target="_blank" rel="noopener" aria-label="Romero Rodrigues on LinkedIn">LinkedIn</a></div>
       </div>
       <div class="person">
         <img src="assets/img/team/gabriel-alves.jpg" alt="Gabriel Alves" width="640" height="640" loading="lazy">
@@ -583,9 +583,9 @@
     <div>
       <p class="eyebrow">Contact</p>
       <h2 style="margin-top:14px">Building in Latin America? Talk to us.</h2>
-      <p class="lede" style="margin-top:20px">Send a short note and your deck to any investor on the team, or to Romero directly. We read everything, and we answer.</p>
+      <p class="lede" style="margin-top:20px">Send your pitch through Headline’s form and choose Latin America as your region. It reaches the São Paulo team. We read everything, and we answer.</p>
       <div class="ctas" style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap">
-        <a class="btn btn-solid" href="mailto:romero@headline.com?subject=Pitch%20for%20Headline%20Latam">Send your deck</a>
+        <a class="btn btn-solid ext" href="https://forms.headline.com/intros-and-ideas" target="_blank" rel="noopener">Send your pitch</a>
         <a class="btn btn-ghost ext" href="https://www.linkedin.com/company/headlinevc" target="_blank" rel="noopener">Headline on LinkedIn</a>
       </div>
     </div>
@@ -595,8 +595,8 @@
         <p>Av. Chedid Jafet, 75, 28º andar<br>Vila Olímpia, São Paulo, SP, Brazil</p>
       </div>
       <div class="block">
-        <div class="lbl">Press and partnerships</div>
-        <p><a href="mailto:romero@headline.com">romero@headline.com</a></p>
+        <div class="lbl">Partnerships and contact</div>
+        <p><a href="mailto:all-brasil@headline.com">all-brasil@headline.com</a></p>
       </div>
       <div class="block">
         <div class="lbl">Headline worldwide</div>
@@ -642,12 +642,12 @@
     document.getElementById('consent').hidden=true;
   }
   try{if(!localStorage.getItem('hl-consent'))showConsent()}catch(e){showConsent()}
-  // Email clicks are the site's conversions: pitch decks, press, team contacts
+  // Email and pitch-form clicks are the site's conversions
   document.addEventListener('click',function(e){
-    var a=e.target.closest('a[href^="mailto:"]');
+    var a=e.target.closest('a[href^="mailto:"],a[href^="https://forms.headline.com/"]');
     if(!a)return;
-    var sec=a.closest('section');
-    gtag('event','generate_lead',{method:'email',contact:a.getAttribute('href').slice(7).split('?')[0],link_location:sec&&sec.id?sec.id:'footer'});
+    var sec=a.closest('section'),h=a.getAttribute('href'),mail=h.indexOf('mailto:')===0;
+    gtag('event','generate_lead',{method:mail?'email':'pitch_form',contact:mail?h.slice(7).split('?')[0]:h,link_location:sec&&sec.id?sec.id:'footer'});
   });
   function toggleNav(){
     var n=document.getElementById('nav'),b=n.querySelector('.burger');
