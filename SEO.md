@@ -97,7 +97,17 @@ Antes, com `PriceClass_100`, quem acessava de São Paulo era atendido pelo edge 
 | TTFB, HTML em cache | 0,48–0,58 s | 0,16–0,17 s |
 | TTFB, fonte (woff2) | 0,47 s | 0,13 s |
 
-No Lighthouse, com o HTML em cache no edge, o TTFB ficou em 40–60 ms e o FCP observado em ~300 ms (antes, ~150–180 ms e ~540 ms). Quando o edge revalida o HTML (`max-age=300`, a cada 5 minutos), o TTFB vai a 400–480 ms, porque GRU consulta o S3 em us-east-1. Próximo passo: `s-maxage` longo no HTML (o deploy já invalida `/*`).
+No Lighthouse, com o HTML em cache no edge, o TTFB ficou em 40–60 ms e o FCP observado em ~300 ms (antes, ~150–180 ms e ~540 ms). Quando o edge revalida o HTML (`max-age=300`, a cada 5 minutos), o TTFB vai a 400–480 ms, porque GRU consulta o S3 em us-east-1.
+
+### Cache no edge e nos navegadores (2026-10-15)
+
+| Arquivos | `Cache-Control` |
+|---|---|
+| HTML, `sitemap.xml`, `robots.txt`, `llms.txt`, manifest | `public,max-age=300,s-maxage=31536000,stale-while-revalidate=86400` |
+| Tudo em `/assets` | `public,max-age=31536000,immutable` (regravado a cada deploy) |
+| Ícones da raiz (`favicon.*`, `apple-touch-icon.png`) | `max-age=31536000,public` (sem `immutable`, porque o nome não pode mudar) |
+
+Verificado: 6 minutos depois do deploy, o HTML continuava `Hit from cloudfront` com `age: 408` (sem `RefreshHit`), e o TTFB medido com curl de São Paulo ficou em ~0,14 s. No Lighthouse, o TTFB ficou em 36–61 ms em 8 de 9 execuções, e o FCP observado caiu para ~190–430 ms (antes de toda a revisão, 500–1.400 ms). Regra que passa a valer: arquivo alterado em `/assets` ganha nome novo (ver `AGENTS.md`).
 
 ## Palavras-chave por idioma
 
