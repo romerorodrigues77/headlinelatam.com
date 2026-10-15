@@ -57,6 +57,17 @@ short_cache robots.txt "text/plain; charset=utf-8"
 short_cache llms.txt "text/plain; charset=utf-8"
 short_cache site.webmanifest "application/manifest+json"
 
+# Formatos que o AWS CLI pode não reconhecer: content-type explícito, cache longo
+typed() { # padrão content-type
+    aws s3 cp "$SOURCE_DIR/assets" "s3://$S3_BUCKET/assets" --recursive \
+        --exclude "*" --include "$1" \
+        --profile "$AWS_PROFILE" \
+        --content-type "$2" \
+        --cache-control "max-age=31536000,public" > /dev/null
+}
+typed "*.woff2" "font/woff2"
+typed "*.avif" "image/avif"
+
 echo -e "${GREEN}✓ Upload concluído${NC}"
 
 # Invalida cache do CloudFront

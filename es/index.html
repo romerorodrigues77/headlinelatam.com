@@ -41,12 +41,11 @@
   try { var hlc = localStorage.getItem('hl-consent'); if (hlc) gtag('consent', 'update', {analytics_storage: hlc}); } catch (e) {}
   gtag('js', new Date());
   gtag('config', 'G-0B661FMB74', {content_group: 'es'});
+  // gtag.js (~180 KB) loads after first paint: on the first interaction, or 2.5 s after load. Commands queue in dataLayer until then.
+  function loadGA(){if(loadGA.done)return;loadGA.done=1;var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-0B661FMB74';document.head.appendChild(s)}
+  ['pointerdown','keydown','touchstart','scroll'].forEach(function(e){addEventListener(e,loadGA,{once:true,passive:true})});
+  addEventListener('load',function(){setTimeout(loadGA,2500)});
 </script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0B661FMB74"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap"></noscript>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -98,6 +97,9 @@
 }
 </script>
 <style>
+  /* Self-hosted latin subsets, axes trimmed to the weights in use */
+  @font-face{font-family:"Fraunces";font-style:normal;font-weight:500 600;font-display:swap;src:url(/assets/fonts/fraunces-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+  @font-face{font-family:"Manrope";font-style:normal;font-weight:400 700;font-display:swap;src:url(/assets/fonts/manrope-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
   :root{
     --bg:#f9f2ee; --ink:#000; --ink-2:#333; --grey:#6b6b6b; --line:#d9d2cd; --card:#fffaf7;
     --green:#05e380; --orange:#ff7959; --yellow:#ffdc59; --blue:#00d5ff;
@@ -291,6 +293,9 @@
   .consent button{font:inherit;font-weight:700;border-radius:999px;padding:8px 16px;cursor:pointer;border:1.5px solid var(--bg);background:transparent;color:var(--bg)}
   .consent button.ok{background:var(--green);border-color:var(--green);color:var(--ink)}
   .linkish{background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;text-decoration:underline}
+  .person picture{display:block}
+  /* Below-the-fold sections skip rendering until they approach the viewport */
+  #portfolio,#news,#team,#projects{content-visibility:auto;contain-intrinsic-size:auto 1400px}
 </style>
 </head>
 <body>
@@ -305,7 +310,7 @@
 <header class="nav" id="nav">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="Headline Latam">
-      <img src="/assets/img/logos/headline-brasil.webp" alt="Headline" width="449" height="88">
+      <img src="/assets/img/logos/headline-brasil-h52.webp" srcset="/assets/img/logos/headline-brasil-h52.webp 2x, /assets/img/logos/headline-brasil.webp 3x" alt="Headline" width="449" height="88">
       <span class="latam">Latam</span>
     </a>
     <button class="burger" aria-label="Menu" aria-expanded="false" onclick="toggleNav()"><span></span><span></span><span></span></button>
@@ -504,42 +509,42 @@
     </div>
     <div class="team">
       <div class="person">
-        <img src="/assets/img/team/romero-rodrigues.jpg" alt="Romero Rodrigues" width="640" height="640" loading="lazy">
+        <picture><source type="image/avif" srcset="/assets/img/team/romero-rodrigues-320.avif 320w, /assets/img/team/romero-rodrigues-480.avif 480w, /assets/img/team/romero-rodrigues-640.avif 640w" sizes="(min-width:1240px) 375px, (min-width:760px) 31vw, 47vw"><img src="/assets/img/team/romero-rodrigues-640.webp" srcset="/assets/img/team/romero-rodrigues-320.webp 320w, /assets/img/team/romero-rodrigues-480.webp 480w, /assets/img/team/romero-rodrigues-640.webp 640w" sizes="(min-width:1240px) 375px, (min-width:760px) 31vw, 47vw" alt="Romero Rodrigues" width="640" height="640" loading="lazy" decoding="async"></picture>
         <h3><a href="https://headline.com/team/romero-rodrigues" target="_blank" rel="noopener">Romero Rodrigues</a></h3>
         <p class="title">Managing Partner · Fintech, Aplicaciones</p>
         <p>Lidera Headline en América Latina y la estrategia de venture capital de XP. Cofundó Buscapé en 1998 y la llevó hasta su venta a Naspers por US$ 374 millones. Ha invertido en más de 90 startups, nueve de ellas unicornios, y lideró la inversión de Headline en Pismo antes de su adquisición por Visa por mil millones de dólares.</p>
         <div class="links"><a href="https://romerorodrigues.com/en" target="_blank" rel="noopener" aria-label="Sitio web personal de Romero Rodrigues">Sitio web</a><a href="https://www.linkedin.com/in/romero/" target="_blank" rel="noopener" aria-label="LinkedIn de Romero Rodrigues">LinkedIn</a></div>
       </div>
       <div class="person">
-        <img src="/assets/img/team/gabriel-alves.jpg" alt="Gabriel Alves" width="640" height="640" loading="lazy">
+        <picture><source type="image/avif" srcset="/assets/img/team/gabriel-alves-320.avif 320w, /assets/img/team/gabriel-alves-480.avif 480w, /assets/img/team/gabriel-alves-640.avif 640w" sizes="(min-width:1240px) 375px, (min-width:760px) 31vw, 47vw"><img src="/assets/img/team/gabriel-alves-640.webp" srcset="/assets/img/team/gabriel-alves-320.webp 320w, /assets/img/team/gabriel-alves-480.webp 480w, /assets/img/team/gabriel-alves-640.webp 640w" sizes="(min-width:1240px) 375px, (min-width:760px) 31vw, 47vw" alt="Gabriel Alves" width="640" height="640" loading="lazy" decoding="async"></picture>
         <h3><a href="https://headline.com/team/gabriel-alves" target="_blank" rel="noopener">Gabriel Alves</a></h3>
         <p class="title">Partner</p>
         <p>Busca fundadores con ambición y ejecución excepcionales que construyan empresas capaces de definir categorías en Brasil y más allá. Antes de Headline, ocupó cargos senior en banca de inversión en Evercore, BTG Pactual y XP, después de iniciar su carrera como abogado corporativo y tributario.</p>
         <div class="links"><a href="https://www.linkedin.com/in/gabriel-alves-71218819/" target="_blank" rel="noopener" aria-label="LinkedIn de Gabriel Alves">LinkedIn</a><a href="mailto:gabriel@headline.com" aria-label="Correo de Gabriel Alves">Correo</a></div>
       </div>
       <div class="person">
-        <img src="/assets/img/team/maria-beatriz-de-orleans-e-braganca.jpg" alt="Maria Beatriz de Orleans e Bragança" width="640" height="640" loading="lazy">
+        <picture><source type="image/avif" srcset="/assets/img/team/maria-beatriz-de-orleans-e-braganca-320.avif 320w, /assets/img/team/maria-beatriz-de-orleans-e-braganca-480.avif 480w, /assets/img/team/maria-beatriz-de-orleans-e-braganca-640.avif 640w" sizes="(min-width:1240px) 375px, (min-width:760px) 31vw, 47vw"><img src="/assets/img/team/maria-beatriz-de-orleans-e-braganca-640.webp" srcset="/assets/img/team/maria-beatriz-de-orleans-e-braganca-320.webp 320w, /assets/img/team/maria-beatriz-de-orleans-e-braganca-480.webp 480w, /assets/img/team/maria-beatriz-de-orleans-e-braganca-640.webp 640w" sizes="(min-width:1240px) 375px, (min-width:760px) 31vw, 47vw" alt="Maria Beatriz de Orleans e Bragança" width="640" height="640" loading="lazy" decoding="async"></picture>
         <h3><a href="https://headline.com/team/maria-beatriz-de-orleans-e-braganca" target="_blank" rel="noopener">Maria Beatriz de Orleans e Bragança</a></h3>
         <p class="title">Inversionista · Fintech, Aplicaciones, IA</p>
         <p>Invierte en startups con la IA en el centro del producto, desde Seed hasta Serie B. Antes lideró las operaciones de inversión del brazo de private equity y venture capital de Bradesco y fue la primera contratación de Fuse Capital. Abogada de la PUC-Rio, con MBA del IESE.</p>
         <div class="links"><a href="https://www.linkedin.com/in/maria-beatriz-de-orleans-e-bragan%C3%A7a-024242116/" target="_blank" rel="noopener" aria-label="LinkedIn de Maria Beatriz de Orleans e Bragança">LinkedIn</a><a href="mailto:beatriz@headline.com" aria-label="Correo de Maria Beatriz de Orleans e Bragança">Correo</a></div>
       </div>
       <div class="person">
-        <img src="/assets/img/team/victor-cintra.jpg" alt="Victor Cintra" width="640" height="640" loading="lazy">
+        <picture><source type="image/avif" srcset="/assets/img/team/victor-cintra-320.avif 320w, /assets/img/team/victor-cintra-480.avif 480w, /assets/img/team/victor-cintra-640.avif 640w" sizes="(min-width:1240px) 375px, (min-width:760px) 31vw, 47vw"><img src="/assets/img/team/victor-cintra-640.webp" srcset="/assets/img/team/victor-cintra-320.webp 320w, /assets/img/team/victor-cintra-480.webp 480w, /assets/img/team/victor-cintra-640.webp 640w" sizes="(min-width:1240px) 375px, (min-width:760px) 31vw, 47vw" alt="Victor Cintra" width="640" height="640" loading="lazy" decoding="async"></picture>
         <h3><a href="https://headline.com/team/victor-cintra" target="_blank" rel="noopener">Victor Cintra</a></h3>
         <p class="title">Inversionista · Fintech, SaaS, Insurtech</p>
         <p>Respalda a fundadores con ideas ambiciosas y la determinación para ejecutarlas. Antes de Headline, fue uno de los primeros empleados de una startup de delivery, donde trabajó en finanzas, operaciones, ventas, producto y levantamiento de capital.</p>
         <div class="links"><a href="https://www.linkedin.com/in/victor-toledo-soares-cintra-924a11181/" target="_blank" rel="noopener" aria-label="LinkedIn de Victor Cintra">LinkedIn</a><a href="mailto:victor@headline.com" aria-label="Correo de Victor Cintra">Correo</a></div>
       </div>
       <div class="person">
-        <img src="/assets/img/team/daniela-carneiro.jpg" alt="Daniela Carneiro" width="640" height="640" loading="lazy">
+        <picture><source type="image/avif" srcset="/assets/img/team/daniela-carneiro-320.avif 320w, /assets/img/team/daniela-carneiro-480.avif 480w, /assets/img/team/daniela-carneiro-640.avif 640w" sizes="(min-width:1240px) 375px, (min-width:760px) 31vw, 47vw"><img src="/assets/img/team/daniela-carneiro-640.webp" srcset="/assets/img/team/daniela-carneiro-320.webp 320w, /assets/img/team/daniela-carneiro-480.webp 480w, /assets/img/team/daniela-carneiro-640.webp 640w" sizes="(min-width:1240px) 375px, (min-width:760px) 31vw, 47vw" alt="Daniela Carneiro" width="640" height="640" loading="lazy" decoding="async"></picture>
         <h3><a href="https://headline.com/team/daniela-carneiro" target="_blank" rel="noopener">Daniela Carneiro</a></h3>
         <p class="title">Inversionista · Salud, Infraestructura</p>
         <p>Ingeniera industrial convertida en inversionista, atraída por los problemas más complejos y desordenados. Trabajó en optimización de procesos dentro de startups y en diseño estratégico en consultoría antes de unirse al equipo de inversión de Brasil.</p>
         <div class="links"><a href="https://www.linkedin.com/in/paula-daniela-carneiro-6724aa17b" target="_blank" rel="noopener" aria-label="LinkedIn de Daniela Carneiro">LinkedIn</a><a href="mailto:daniela@headline.com" aria-label="Correo de Daniela Carneiro">Correo</a></div>
       </div>
       <div class="person">
-        <img src="/assets/img/team/pietro-caiafa.jpg" alt="Pietro Caiafa" width="640" height="640" loading="lazy">
+        <picture><source type="image/avif" srcset="/assets/img/team/pietro-caiafa-320.avif 320w, /assets/img/team/pietro-caiafa-480.avif 480w, /assets/img/team/pietro-caiafa-640.avif 640w" sizes="(min-width:1240px) 375px, (min-width:760px) 31vw, 47vw"><img src="/assets/img/team/pietro-caiafa-640.webp" srcset="/assets/img/team/pietro-caiafa-320.webp 320w, /assets/img/team/pietro-caiafa-480.webp 480w, /assets/img/team/pietro-caiafa-640.webp 640w" sizes="(min-width:1240px) 375px, (min-width:760px) 31vw, 47vw" alt="Pietro Caiafa" width="640" height="640" loading="lazy" decoding="async"></picture>
         <h3><a href="https://headline.com/team/pietro-caiafa" target="_blank" rel="noopener">Pietro Caiafa</a></h3>
         <p class="title">Inversionista · Fintech, Infraestructura</p>
         <p>Invierte en fintech, SaaS, infraestructura, agtech, edtech, e-commerce y deporte. Dirigió un negocio de e-commerce y cofundó Link Finance, la comunidad de mercados financieros de Link School of Business.</p>
@@ -611,7 +616,7 @@
 <footer>
   <div class="wrap">
     <div>
-      <a class="brand" href="#top" aria-label="Headline Latam"><img src="/assets/img/logos/headline-brasil.webp" alt="Headline" width="449" height="88"><span class="latam">Latam</span></a>
+      <a class="brand" href="#top" aria-label="Headline Latam"><img src="/assets/img/logos/headline-brasil-h52.webp" srcset="/assets/img/logos/headline-brasil-h52.webp 2x, /assets/img/logos/headline-brasil.webp 3x" alt="Headline" width="449" height="88"><span class="latam">Latam</span></a>
       <p style="margin-top:12px;max-width:52ch">Headline Latam es la extensión latinoamericana de <a href="https://headline.com" style="color:var(--ink);border-bottom:1.5px solid var(--ink)">headline.com</a>, la firma global de venture capital. Lo mantiene el equipo de São Paulo.</p>
     </div>
     <nav>
@@ -669,5 +674,6 @@
     var x=l.classList.toggle('expanded');b.textContent=x?'Ver menos':'Ver noticias anteriores';
   }
 </script>
+<script type="speculationrules">{"prefetch":[{"where":{"href_matches":["/","/pt/","/es/"]},"eagerness":"moderate"}]}</script>
 </body>
 </html>

@@ -65,6 +65,30 @@ Decisões de idioma: espanhol latino-americano neutro ("inversionistas", "portaf
 
 LCP 2,9 s, CLS 0,018, TBT 20 ms. Os dois pontos que tiravam nota (fontes bloqueantes e contraste) foram corrigidos nesta revisão; rodar de novo após o deploy. Restante: imagens (~11 KiB em WebP para as fotos da equipe).
 
+## Performance (revisão de 2026-10-14)
+
+Lighthouse 12 local, celular simulado, mediana de 3 execuções por página, em produção.
+
+| | Antes | Depois |
+|---|---|---|
+| Nota (desempenho/a11y/práticas/SEO) | 100/100/100/100 | 100/100/100/100 |
+| Bytes no carregamento inicial | 297–298 KB | 100–101 KB |
+| Requisições | 9 | 6 |
+| FCP observado (en/pt/es) | 582/643/698 ms | 535/536/543 ms |
+| TBT | 9–38 ms | 0 ms |
+| CLS | 0,001 | 0,001 |
+
+O que foi feito: fontes servidas do próprio domínio (`assets/fonts/`, só o subset latino, Fraunces com eixo de peso cortado para 500–600), GA4 carregado após a primeira interação ou 2,5 s depois do `load`, fotos da equipe em AVIF/WebP com `srcset` (320/480/640), logos recomprimidos, logo do cabeçalho em tamanho 2x, `content-visibility` nas seções abaixo da dobra e prefetch das outras línguas.
+
+Testado e descartado, com medição:
+
+- **`preload` das fontes:** atrasa a primeira pintura em ~130 ms (o Chrome segura o texto esperando a fonte).
+- **Fallbacks com `size-adjust`** (Georgia/Arial calibradas): pioraram o CLS em `/pt/` (0,04–0,07), porque mudam quebras de linha no hero; a pilha original (system-ui, Georgia) quebra igual às fontes web. No Android esses fallbacks nem existem.
+- **Minificar o HTML:** ganha ~0,7 KB comprimido; não compensa um passo de build.
+- **Fixar o eixo `opsz` da Fraunces:** economizaria 26 KB, mas muda o desenho dos títulos pequenos.
+
+Pendente, depende de pedido explícito por ser mudança no CloudFront: `PriceClass_100` → `PriceClass_All`, para servir a América Latina de edges locais (hoje o TTFB medido no Brasil é ~0,45–0,55 s).
+
 ## Palavras-chave por idioma
 
 | Idioma | Palavra-chave | Dificuldade | Oportunidade | Página hoje | Próximo passo |
