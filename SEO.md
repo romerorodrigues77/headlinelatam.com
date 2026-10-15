@@ -87,7 +87,17 @@ Testado e descartado, com medição:
 - **Minificar o HTML:** ganha ~0,7 KB comprimido; não compensa um passo de build.
 - **Fixar o eixo `opsz` da Fraunces:** economizaria 26 KB, mas muda o desenho dos títulos pequenos.
 
-Pendente, depende de pedido explícito por ser mudança no CloudFront: `PriceClass_100` → `PriceClass_All`, para servir a América Latina de edges locais (hoje o TTFB medido no Brasil é ~0,45–0,55 s).
+### CloudFront `PriceClass_All` (2026-10-14)
+
+Antes, com `PriceClass_100`, quem acessava de São Paulo era atendido pelo edge de Miami (`x-amz-cf-pop: MIA50-P7`). Depois da troca, o edge passou a ser `GRU1-P1`. Medição com curl, 15 conexões novas por URL, a partir de São Paulo (Starlink):
+
+| | Antes (MIA50) | Depois (GRU1) |
+|---|---|---|
+| Conexão TCP | ~150 ms | ~40–50 ms |
+| TTFB, HTML em cache | 0,48–0,58 s | 0,16–0,17 s |
+| TTFB, fonte (woff2) | 0,47 s | 0,13 s |
+
+No Lighthouse, com o HTML em cache no edge, o TTFB ficou em 40–60 ms e o FCP observado em ~300 ms (antes, ~150–180 ms e ~540 ms). Quando o edge revalida o HTML (`max-age=300`, a cada 5 minutos), o TTFB vai a 400–480 ms, porque GRU consulta o S3 em us-east-1. Próximo passo: `s-maxage` longo no HTML (o deploy já invalida `/*`).
 
 ## Palavras-chave por idioma
 
