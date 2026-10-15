@@ -47,7 +47,7 @@ short_cache() { # arquivo content-type
     aws s3 cp "$SOURCE_DIR/$1" "s3://$S3_BUCKET/$1" \
         --profile "$AWS_PROFILE" \
         --content-type "$2" \
-        --cache-control "public,max-age=300,s-maxage=31536000" > /dev/null
+        --cache-control "public,max-age=300,s-maxage=31536000,stale-while-revalidate=86400" > /dev/null
 }
 short_cache index.html "text/html; charset=utf-8"
 short_cache pt/index.html "text/html; charset=utf-8"
@@ -58,16 +58,23 @@ short_cache robots.txt "text/plain; charset=utf-8"
 short_cache llms.txt "text/plain; charset=utf-8"
 short_cache site.webmanifest "application/manifest+json"
 
-# Formatos que o AWS CLI pode não reconhecer: content-type explícito, cache longo
-typed() { # padrão content-type
+# /assets: cache de 1 ano com immutable (o navegador nem revalida). Regra: ao mudar um
+# arquivo em /assets, dê a ele um nome novo e atualize as referências nas três páginas.
+# Regrava todos os arquivos (não só os alterados) para que os metadados valham também
+# para o que já estava no bucket; content-type explícito por extensão.
+immutable() { # padrão content-type
     aws s3 cp "$SOURCE_DIR/assets" "s3://$S3_BUCKET/assets" --recursive \
         --exclude "*" --include "$1" \
         --profile "$AWS_PROFILE" \
         --content-type "$2" \
-        --cache-control "max-age=31536000,public" > /dev/null
+        --cache-control "public,max-age=31536000,immutable" > /dev/null
 }
-typed "*.woff2" "font/woff2"
-typed "*.avif" "image/avif"
+immutable "*.woff2" "font/woff2"
+immutable "*.avif" "image/avif"
+immutable "*.webp" "image/webp"
+immutable "*.png" "image/png"
+immutable "*.jpg" "image/jpeg"
+immutable "*.svg" "image/svg+xml"
 
 echo -e "${GREEN}✓ Upload concluído${NC}"
 
