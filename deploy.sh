@@ -40,13 +40,14 @@ aws s3 sync "$SOURCE_DIR" "s3://$S3_BUCKET/" \
     --exclude "infra/*" \
     --exclude "*.sh"
 
-# Arquivos que mudam com frequência: cache curto e content-type explícito
+# Arquivos que mudam com frequência: cache curto no navegador e content-type explícito.
+# No CloudFront ficam até 1 ano (s-maxage), sem revalidar no S3; a invalidação /* abaixo renova a cada deploy.
 short_cache() { # arquivo content-type
     [ -f "$SOURCE_DIR/$1" ] || return 0
     aws s3 cp "$SOURCE_DIR/$1" "s3://$S3_BUCKET/$1" \
         --profile "$AWS_PROFILE" \
         --content-type "$2" \
-        --cache-control "max-age=300,public" > /dev/null
+        --cache-control "public,max-age=300,s-maxage=31536000" > /dev/null
 }
 short_cache index.html "text/html; charset=utf-8"
 short_cache pt/index.html "text/html; charset=utf-8"
