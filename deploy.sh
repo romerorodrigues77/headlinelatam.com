@@ -32,6 +32,8 @@ aws s3 sync "$SOURCE_DIR" "s3://$S3_BUCKET/" \
     --profile "$AWS_PROFILE" \
     --cache-control "max-age=31536000,public" \
     --exclude ".git/*" \
+    --exclude ".git" \
+    --exclude ".local/*" \
     --exclude ".gitignore" \
     --exclude "node_modules/*" \
     --exclude ".env*" \
