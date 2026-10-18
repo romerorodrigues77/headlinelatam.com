@@ -32,20 +32,7 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<!-- Google Analytics 4 with Consent Mode v2: no ad storage; analytics opt-in in EEA/UK/CH, opt-out elsewhere -->
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('consent', 'default', {ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted'});
-  gtag('consent', 'default', {analytics_storage: 'denied', wait_for_update: 500, region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});
-  try { var hlc = localStorage.getItem('hl-consent'); if (hlc) gtag('consent', 'update', {analytics_storage: hlc}); } catch (e) {}
-  gtag('js', new Date());
-  gtag('config', 'G-0B661FMB74', {content_group: 'pt'});
-  // gtag.js (~180 KB) loads after first paint: on the first interaction, or 2.5 s after load. Commands queue in dataLayer until then.
-  function loadGA(){if(loadGA.done)return;loadGA.done=1;var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-0B661FMB74';document.head.appendChild(s)}
-  ['pointerdown','keydown','touchstart','scroll'].forEach(function(e){addEventListener(e,loadGA,{once:true,passive:true})});
-  addEventListener('load',function(){setTimeout(loadGA,2500)});
-</script>
+<script type="module" src="/assets/analytics/headline-analytics-v2-9d34e3e4503a.js"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -636,24 +623,10 @@
 
 <div class="consent" id="consent" role="dialog" aria-label="Preferências de cookies" hidden>
   <p>Usamos cookies do Google Analytics para entender como o site é usado. Sem anúncios, sem venda de dados. <a href="https://headline.com/privacy-policy" target="_blank" rel="noopener">Política de privacidade</a></p>
-  <div class="acts"><button type="button" onclick="setConsent('denied')">Recusar</button><button type="button" class="ok" onclick="setConsent('granted')">Aceitar</button></div>
+  <div class="acts"><button type="button">Recusar</button><button type="button" class="ok">Aceitar</button></div>
 </div>
 
 <script>
-  function showConsent(){document.getElementById('consent').hidden=false}
-  function setConsent(v){
-    try{localStorage.setItem('hl-consent',v)}catch(e){}
-    gtag('consent','update',{analytics_storage:v});
-    document.getElementById('consent').hidden=true;
-  }
-  try{if(!localStorage.getItem('hl-consent'))showConsent()}catch(e){showConsent()}
-  // Email and pitch-form clicks are the site's conversions
-  document.addEventListener('click',function(e){
-    var a=e.target.closest('a[href^="mailto:"],a[href^="https://forms.headline.com/"]');
-    if(!a)return;
-    var sec=a.closest('section'),h=a.getAttribute('href'),mail=h.indexOf('mailto:')===0;
-    gtag('event','generate_lead',{method:mail?'email':'pitch_form',contact:mail?h.slice(7).split('?')[0]:h,link_location:sec&&sec.id?sec.id:'footer'});
-  });
   function toggleNav(){
     var n=document.getElementById('nav'),b=n.querySelector('.burger');
     var open=n.classList.toggle('open');b.setAttribute('aria-expanded',open);
