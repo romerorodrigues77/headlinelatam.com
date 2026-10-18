@@ -21,6 +21,7 @@ if [[ "${1:-}" != "--apply" ]]; then
   printf '  upload immutable %s\n  publish index.html, pt/index.html, es/index.html\n  invalidate their public and origin paths\n' "$analytics_asset"
   exit 0
 fi
+git rev-parse --is-inside-work-tree > /dev/null
 [[ -z "$(git status --porcelain)" ]] || { printf 'Commit reviewed changes before publication.\n'; exit 1; }
 analytics_account=$(aws sts get-caller-identity --profile romero --query Account --output text)
 [[ "$analytics_account" == "160184161667" ]] || { printf 'Unexpected AWS account.\n'; exit 1; }
