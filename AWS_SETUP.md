@@ -1,5 +1,7 @@
 # AWS Setup - headlinelatam.com
 
+> Visão geral de todos os acessos (AWS, GitHub, GA4, Search Console) e permissões comprovadas: [ACESSOS-E-CONFIGURACOES.md](ACESSOS-E-CONFIGURACOES.md).
+
 Site estático (HTML puro) servido por **S3 + CloudFront**, com DNS no **Route 53**. O domínio continua registrado na **GoDaddy**, só os nameservers apontam para a AWS.
 
 Conta AWS `160184161667`, profile local `romero`.
@@ -51,12 +53,12 @@ visitante → Route 53 (ALIAS) → CloudFront E4NSQMSB8LK1Y → S3 headlinelatam
   | `www.headlinelatam.com` | A / AAAA (ALIAS) | `d3a3ppc5bujjy3.cloudfront.net` |
   | `_d52f43aa…headlinelatam.com` | CNAME | validação ACM |
   | `_4c66ce79…www.headlinelatam.com` | CNAME | validação ACM |
-  | `headlinelatam.com` | TXT | `v=spf1 -all` |
+  | `headlinelatam.com` | TXT | `v=spf1 -all` + `google-site-verification=…` (mesmo registro) |
   | `_dmarc.headlinelatam.com` | TXT | `v=DMARC1; p=reject; adkim=s; aspf=s` |
 
 - O domínio **não tem e-mail** (nenhum MX). O SPF `-all` e o DMARC `p=reject` impedem que alguém envie e-mail se passando por `@headlinelatam.com`.
 - O painel de DNS da GoDaddy **não vale mais**: qualquer mudança de DNS é feita no Route 53. Na GoDaddy fica só o registro e a renovação do domínio.
-- A fonte dos registros é [infra/route53-records.json](infra/route53-records.json). Como é tudo `UPSERT`, dá para reaplicar sem risco:
+- A fonte dos registros é [infra/route53-records.json](infra/route53-records.json). ⚠️ Desde 2026-10-04 o TXT do apex também tem `google-site-verification`, que **não está** no arquivo: reaplicar o lote como está remove a verificação do Search Console. Inclua o valor no mesmo registro antes de reaplicar (ver [ACESSOS-E-CONFIGURACOES.md](ACESSOS-E-CONFIGURACOES.md)):
   ```bash
   aws route53 change-resource-record-sets --hosted-zone-id Z0269845L2AK7KOYU2TT --change-batch file://infra/route53-records.json --profile romero
   ```
