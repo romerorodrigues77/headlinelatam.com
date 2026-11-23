@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preload" href="/assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
 <title>Headline Latam | Venture Capital in Brazil and Latin America</title>
 <meta name="description" content="Headline's São Paulo team backs founders from Seed to Series B across Brazil and Latin America. Our funds, portfolio, news, team and how to pitch us.">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
@@ -45,7 +47,7 @@
       "url": "https://headlinelatam.com/",
       "logo": {"@type": "ImageObject", "url": "https://headlinelatam.com/assets/img/logo-512.png", "width": 512, "height": 512},
       "image": "https://headlinelatam.com/assets/img/og.png",
-      "description": "The São Paulo team of Headline, a global venture capital firm. Invests from Seed to Series B in Brazil and Latin America through the Headline Brazil funds, co-managed with XP Vista Asset Management.",
+      "description": "The São Paulo team of Headline, a global venture capital firm. Invests from Seed to Series B in Brazil and Latin America through the Headline Brazil funds, co-managed with XP Vista Asset Management. Since 2025 it also runs Headline Prime, a secondaries fund with XP.",
       "foundingDate": "2012",
       "email": "all-brasil@headline.com",
       "address": {"@type": "PostalAddress", "streetAddress": "Av. Chedid Jafet, 75, 28º andar, Vila Olímpia", "addressLocality": "São Paulo", "addressRegion": "SP", "addressCountry": "BR"},
@@ -87,11 +89,13 @@
   /* Self-hosted latin subsets, axes trimmed to the weights in use */
   @font-face{font-family:"Fraunces";font-style:normal;font-weight:500 600;font-display:swap;src:url(/assets/fonts/fraunces-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
   @font-face{font-family:"Manrope";font-style:normal;font-weight:400 700;font-display:swap;src:url(/assets/fonts/manrope-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+  @font-face{font-family:"Fraunces Fallback";src:local("Georgia");size-adjust:109.98%;ascent-override:88.92%;descent-override:23.19%;line-gap-override:0%}
+  @font-face{font-family:"Manrope Fallback";src:local("Arial"),local("Helvetica");size-adjust:104.28%;ascent-override:102.23%;descent-override:28.77%;line-gap-override:0%}
   :root{
     --bg:#f9f2ee; --ink:#000; --ink-2:#333; --grey:#6b6b6b; --line:#d9d2cd; --card:#fffaf7;
     --green:#05e380; --orange:#ff7959; --yellow:#ffdc59; --blue:#00d5ff;
-    --serif:"Fraunces","RecklessNeue-Medium",Georgia,serif;
-    --sans:"Manrope","Roobert-Regular",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+    --serif:"Fraunces","Fraunces Fallback","RecklessNeue-Medium",Georgia,serif;
+    --sans:"Manrope","Manrope Fallback","Roobert-Regular",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
     --gutter:clamp(16px,4vw,40px); --max:1240px; --t:300ms ease-out;
   }
   *{box-sizing:border-box}
@@ -174,13 +178,17 @@
 
   /* funds */
   .funds{display:grid;gap:18px}
-  @media(min-width:900px){.funds{grid-template-columns:repeat(3,1fr)}}
+  @media(min-width:720px){.funds{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1100px){.funds{grid-template-columns:repeat(4,1fr)}}
   .fund{border:1px solid var(--line);border-radius:18px;padding:28px 26px 26px;background:var(--card);display:grid;gap:14px;align-content:start;position:relative;overflow:hidden}
+  @media(min-width:1100px){.fund{padding:26px 22px 24px}}
   .fund::before{content:"";position:absolute;inset:0 0 auto 0;height:6px;background:var(--green)}
-  .fund:nth-child(2)::before{background:var(--orange)}
-  .fund:nth-child(3)::before{background:var(--blue)}
+  .fund:nth-child(2)::before{background:var(--yellow)}
+  .fund:nth-child(3)::before{background:var(--orange)}
+  .fund:nth-child(4)::before{background:var(--blue)}
   .fund .tag{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
   .fund .size{font-family:var(--serif);font-size:clamp(34px,3.6vw,48px);line-height:1;letter-spacing:-.02em}
+  @media(min-width:1100px){.fund .size{font-size:clamp(30px,2.9vw,40px)}.fund p{font-size:15px}}
   .fund .size small{font-family:var(--sans);font-size:14px;letter-spacing:0;color:var(--grey);display:block;margin-top:8px}
   .fund p{color:var(--ink-2);font-size:16px}
   .fund ul{margin:4px 0 0;padding:0;list-style:none;display:grid;gap:6px;font-size:14px;color:var(--ink-2)}
@@ -327,7 +335,7 @@
     </div>
     <div class="stats">
       <div class="stat"><b>2012</b><span>Investing in Brazil since, first as Redpoint eventures, now as Headline</span></div>
-      <div class="stat"><b>R$ 2.0 bi</b><span>Under management across four Latin America funds</span></div>
+      <div class="stat"><b>R$ 2.0 bi</b><span>Under management across five Latin America funds</span></div>
       <div class="stat"><b>45+</b><span>Companies backed in the region, from Seed to growth</span></div>
       <div class="stat"><b>US$ 1 bi</b><span>Pismo, sold to Visa in 2024, the largest Brazilian startup exit in years</span></div>
     </div>
@@ -352,7 +360,7 @@
   <div class="wrap">
     <div class="sec-head">
       <h2>The Latin America funds.</h2>
-      <p class="lede">Headline's Brazil Early Fund family: two generations with Redpoint eventures, the current fund with XP, and the global growth fund that follows our companies as they scale.</p>
+      <p class="lede">Headline's Brazil fund family: two generations with Redpoint eventures, the current early-stage fund with XP, the new secondaries fund that buys into companies already scaling, and the global growth fund that follows them further.</p>
     </div>
     <div class="funds">
       <div class="fund">
@@ -364,6 +372,17 @@
           <li>Minority stakes, typically up to 20%</li>
           <li>Portfolio of around 25 companies over four years</li>
           <li>Managed by Romero Rodrigues and the São Paulo team</li>
+        </ul>
+      </div>
+      <div class="fund">
+        <span class="tag">Secondaries · 2025–</span>
+        <div class="size">R$ 62 mi<small>Headline Prime I FIP</small></div>
+        <p>Headline's first secondaries fund, launched in 2025 with XP Vista Asset Management. Instead of funding new rounds, it buys existing stakes in consolidated Latin American tech companies from angels, former executives, funds and corporates that need liquidity.</p>
+        <ul>
+          <li>Series B and C companies, Brazil and Latin America</li>
+          <li>Buys existing shares from early investors seeking liquidity</li>
+          <li>R$ 1 to 15 million per deal, 8 to 10 companies</li>
+          <li>About 1,100 investors through XP, six-year term</li>
         </ul>
       </div>
       <div class="fund">
@@ -459,6 +478,7 @@
       <p class="lede">Rounds, exits and milestones of the Latin America portfolio, as covered by the press. Titles are kept as each outlet published them.</p>
     </div>
     <ul class="news" id="newslist">
+<li class="news-item"><a href="https://valor.globo.com/financas/criptomoedas/noticia/2026/11/17/empresa-de-stablecoins-avenia-capta-r-230-milhes-no-ano-e-mira-aquisies.ghtml" target="_blank" rel="noopener"><span class="news-co">Avenia</span><span class="news-title">Empresa de stablecoins Avenia capta R$ 230 milhões no ano e mira aquisições</span><span class="news-src">Valor · Nov 2026</span></a></li>
 <li class="news-item"><a href="https://exame.com/insight/com-r-5-bilhoes-processados-revert-atrai-valor-capital-e-ja-mira-nova-rodada/p" target="_blank" rel="noopener"><span class="news-co">Revert</span><span class="news-title">Com R$ 5 bilhões processados, Revert atrai Valor Capital e já mira nova rodada</span><span class="news-src">Exame · Aug 2026</span></a></li>
 <li class="news-item"><a href="https://braziljournal.com/sujeira-no-painel-mato-ao-redor-a-datamint-tem-uma-ai-que-apita/" target="_blank" rel="noopener"><span class="news-co">Datamint</span><span class="news-title">Sujeira no painel? Mato ao redor? A DataMint tem uma AI que apita</span><span class="news-src">Brazil Journal · Jun 2026</span></a></li>
 <li class="news-item"><a href="https://pipelinevalor.globo.com/negocios/noticia/vixtra-capta-r-45-milhoes-para-ampliar-trade-finance.ghtml" target="_blank" rel="noopener"><span class="news-co">Vixtra</span><span class="news-title">Vixtra capta R$ 45 milhões para ampliar trade finance</span><span class="news-src">Pipeline Valor · Jun 2026</span></a></li>
@@ -466,7 +486,7 @@
 <li class="news-item"><a href="https://neofeed.com.br/startups/o-que-visa-e-headline-viram-na-celero/" target="_blank" rel="noopener"><span class="news-co">Celero</span><span class="news-title">O que Visa e Headline viram na Celero</span><span class="news-src">NeoFeed · Mar 2026</span></a></li>
 <li class="news-item"><a href="https://braziljournal.com/swift-killer-a-rodada-da-avenia-a-emissora-da-maior-stablecoin-em-real/" target="_blank" rel="noopener"><span class="news-co">Avenia</span><span class="news-title">‘SWIFT killer’. A rodada da Avenia, a emissora da maior stablecoin em real</span><span class="news-src">Brazil Journal · Feb 2026</span></a></li>
 <li class="news-item"><a href="https://exame.com/negocios/startup-de-ia-que-ouve-vendedores-em-lojas-fisicas-levanta-r-13-milhoes/" target="_blank" rel="noopener"><span class="news-co">Alia.do</span><span class="news-title">Startup de IA que ‘ouve’ vendedores em lojas físicas levanta R$ 13 milhões</span><span class="news-src">Exame · Jan 2026</span></a></li>
-<li class="news-item"><a href="https://pipelinevalor.globo.com/startups/noticia/headline-e-domo-aumentam-aposta-na-gig-economy-com-mission-brasil.ghtml" target="_blank" rel="noopener"><span class="news-co">Mission Brasil</span><span class="news-title">Headline e Domo aumentam aposta na gig economy com Mission Brasil</span><span class="news-src">Pipeline Valor · Dec 2025</span></a></li>
+<li class="news-item more"><a href="https://pipelinevalor.globo.com/startups/noticia/headline-e-domo-aumentam-aposta-na-gig-economy-com-mission-brasil.ghtml" target="_blank" rel="noopener"><span class="news-co">Mission Brasil</span><span class="news-title">Headline e Domo aumentam aposta na gig economy com Mission Brasil</span><span class="news-src">Pipeline Valor · Dec 2025</span></a></li>
 <li class="news-item more"><a href="https://neofeed.com.br/startups/a-fintech-multiplicou-seu-valor-por-quatro-em-menos-de-dois-anos-e-ja-vale-r-300-milhoes/" target="_blank" rel="noopener"><span class="news-co">Mercado de Recebíveis</span><span class="news-title">A fintech que multiplicou seu valor por quatro em menos de dois anos. E já vale R$ 300 milhões</span><span class="news-src">NeoFeed · Aug 2025</span></a></li>
 <li class="news-item more"><a href="https://forbes.com.br/escolhas-do-editor/2025/08/aos-21-anos-ela-criou-uma-startup-que-ja-captou-r-23-milhoes/" target="_blank" rel="noopener"><span class="news-co">Neurogram</span><span class="news-title">Aos 21 Anos, Ela Criou uma Startup Que Já Captou R$ 23 Milhões</span><span class="news-src">Forbes Brasil · Aug 2025</span></a></li>
 <li class="news-item more"><a href="https://neofeed.com.br/startups/esse-trio-vendeu-sua-primeira-startup-por-us-100-milhoes-agora-quer-prevenir-fraudes/" target="_blank" rel="noopener"><span class="news-co">Vaas</span><span class="news-title">Esse trio vendeu sua primeira startup por US$ 100 milhões. Agora, quer prevenir fraudes</span><span class="news-src">NeoFeed · Aug 2025</span></a></li>
