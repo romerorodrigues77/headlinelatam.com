@@ -84,6 +84,7 @@ Testado e descartado, com medição:
 
 - **`preload` das fontes:** atrasa a primeira pintura em ~130 ms (o Chrome segura o texto esperando a fonte).
 - **Fallbacks com `size-adjust`** (Georgia/Arial calibradas): pioraram o CLS em `/pt/` (0,04–0,07), porque mudam quebras de linha no hero; a pilha original (system-ui, Georgia) quebra igual às fontes web. No Android esses fallbacks nem existem.
+- **Fallbacks calibrados para Android** (`local("Noto Serif")` e `local("Roboto")` com `size-adjust`, 2026-10-15): medidos em Chromium com as fontes do Android no lugar das do sistema, a 412 e 360 px, webfonts atrasadas 1,2 s. Na pilha atual, o CLS da troca vai de 0,002 a 0,088. Testamos 30 combinações (serif 78–86 %, sans 100–106 %) e nenhuma melhorou as seis medições (3 línguas × 2 larguras). O h1 do hero muda entre 4 e 5 linhas: com serif ≤ 80 % melhora em 412 px e piora em 360 px; com ≥ 82 % acontece o inverso. Em `/pt/` a 360 px, o caso piora em quase todas.
 - **Minificar o HTML:** ganha ~0,7 KB comprimido; não compensa um passo de build.
 - **Fixar o eixo `opsz` da Fraunces:** economizaria 26 KB, mas muda o desenho dos títulos pequenos.
 
