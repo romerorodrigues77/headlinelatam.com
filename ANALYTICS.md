@@ -25,3 +25,7 @@ Review and authorize production publication separately, as required by this proj
 ## Joint admin/research review — 17 October 2026
 
 The prepared runtime is now `headline-analytics-v2-9d34e3e4503a.js`. The previous immutable asset remains unchanged. This version keeps analytics disabled when leaving an administrative route until the current server identity is checked, including the case of a visitor who signed in during the same document session. All three real language pages were validated with the consolidated production research/admin build: 12 browser cases passed, together with 39 unit and 26 API/PostgreSQL integration tests in the AWS project. The scoped publication script passed preparation-only checksum validation; no upload, invalidation or GA4 setting was changed.
+
+## Reverted from `main` on 23 November 2026
+
+The page-side swap (module `<script type="module">` in place of the inline gtag, and the `setConsent`/`generate_lead` handlers removed) and `assets/analytics/*.js` were taken out of `main` so that `./deploy.sh` can publish `main` directly again. On 23 November a full-folder deploy of `main` had put the module live for about 20 minutes without the consent API (404). The reviewed swap remains in branch `codex/ga4-consent` (commit `d24f972`) and in history (`cf686fc`). When the `/ai-research/api/v1/analytics/consent` API and the GA4 settings exist, regenerate the three pages and the asset with the generator above, commit, and publish with `publish-analytics.sh --apply`, never with the full deploy.
